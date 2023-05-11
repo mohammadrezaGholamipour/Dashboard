@@ -1,9 +1,11 @@
 <script setup>
-import AccountInfo from './account-info.vue' 
+import AccountInfo from './account-info.vue'
+//////////////////////////////
+const props = defineProps(['accountInfo'])
 </script>
 <template>
   <div class="parent-account">
-    <AccountInfo />
+    <AccountInfo :accountInfo="props.accountInfo" />
   </div>
 </template>
 
