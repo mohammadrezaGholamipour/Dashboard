@@ -132,7 +132,7 @@
   }
   /* SideBar */
   .parent-side-bar {
-    @apply transition-all duration-500 overflow-hidden;
+    @apply transition-all shadow-2xl duration-500 overflow-hidden;
     background-color: #1e1e2d;
     height: 100%;
   }

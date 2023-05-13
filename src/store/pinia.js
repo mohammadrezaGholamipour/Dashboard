@@ -14,7 +14,11 @@ export const useDashboardStore = defineStore('pinia', {
     },
     requestGetAccountInfo() {
       accountApi.info()
-        .then((response) => { this.accountInfo = response.data })
+        .then((response) => {
+          setTimeout(() => {
+            this.accountInfo = response.data
+          }, 2000);
+        })
         .catch((error) => { console.log(error); })
     }
   },
