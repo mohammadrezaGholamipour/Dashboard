@@ -57,7 +57,8 @@
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex flex-col bg-white rounded-md overflow-hidden shadow-md;
+    @apply flex flex-col  bg-white rounded-md overflow-hidden shadow-md;
+    white-space: nowrap;
   }
   .header-table-system {
     @apply flex justify-between items-center;
@@ -67,6 +68,7 @@
     padding: 26px 29px 10px 29px;
     border-collapse: collapse;
     text-align: right;
+    width: 100%;
   }
   .table-system tbody tr {
     border-top-color: #e1e3ea;
@@ -75,11 +77,30 @@
   }
   .table-system tbody td {
     padding: 13px 10px 13px 10px;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    overflow: hidden;
   }
   .table-system thead th {
     padding: 13px 10px 13px 10px;
   }
-
+  .parent-table-mobile {
+    @apply flex flex-col justify-start items-center;
+  }
+  .table-mobile {
+    @apply flex justify-between items-center mt-3 rounded-md shadow-md p-3 bg-white;
+    min-width: 280px;
+    width: 100%;
+  }
+  .table-mobile-row {
+    @apply flex flex-col justify-start items-center;
+  }
+  .table-mobile-col {
+    @apply py-3;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+  }
   /* login */
   .parent-login {
     flex-wrap: wrap;
@@ -117,6 +138,7 @@
   /* default-layout */
   .parent-layout {
     flex-direction: column;
+    overflow: hidden;
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -128,8 +150,14 @@
     display: flex;
     width: 100%;
   }
+  .content {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
   .route {
-    @apply w-full flex justify-center items-center p-10;
+    @apply w-full p-10 overflow-y-scroll;
   }
   /* header */
   .header-logo {
@@ -150,12 +178,6 @@
   }
   .bread-crumb {
     @apply flex flex-col justify-center items-center;
-  }
-  /* content */
-  .content {
-    display: flex;
-    height: 100%;
-    width: 100%;
   }
   /* SideBar */
   .parent-side-bar {

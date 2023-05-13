@@ -11,7 +11,7 @@ if (AuthService.getTokenUser()) {
 }
 </script>
 <template>
-  <div class="parent-layout">
+  <div id="parent-layout" class="parent-layout">
     <!-- ////////////////////// -->
     <FullHeader />
     <!-- //////////////////////// -->
