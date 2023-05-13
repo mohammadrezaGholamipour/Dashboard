@@ -56,6 +56,30 @@
   .error-message {
     @apply text-red-400 font-bold my-2;
   }
+  .parent-table-system {
+    @apply flex flex-col bg-white rounded-md overflow-hidden shadow-md;
+  }
+  .header-table-system {
+    @apply flex justify-between items-center;
+    padding: 16px 29px 0px 29px;
+  }
+  .table-system {
+    padding: 26px 29px 10px 29px;
+    border-collapse: collapse;
+    text-align: right;
+  }
+  .table-system tbody tr {
+    border-top-color: #e1e3ea;
+    border-top-style: dashed;
+    border-top-width: 1px;
+  }
+  .table-system tbody td {
+    padding: 13px 10px 13px 10px;
+  }
+  .table-system thead th {
+    padding: 13px 10px 13px 10px;
+  }
+
   /* login */
   .parent-login {
     flex-wrap: wrap;
@@ -103,6 +127,9 @@
     background-color: white;
     display: flex;
     width: 100%;
+  }
+  .route {
+    @apply w-full flex justify-center items-center p-10;
   }
   /* header */
   .header-logo {

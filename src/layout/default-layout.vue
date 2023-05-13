@@ -17,7 +17,9 @@ if (AuthService.getTokenUser()) {
     <!-- //////////////////////// -->
     <main class="content">
       <FullSideBar />
-      <router-view />
+      <div class="route">
+        <router-view />
+      </div>
     </main>
     <!-- //////////////////////// -->
   </div>

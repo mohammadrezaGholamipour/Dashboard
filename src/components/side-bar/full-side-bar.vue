@@ -16,7 +16,7 @@ onClickOutside(sideBar, (event) => {
 })
 </script>
 <template>
-  <div ref="sideBar" class="parent-side-bar" :class="pinia.getSideBarStatus ? 'w-[265px]' : 'w-0'">
+  <div ref="sideBar" class="parent-side-bar" :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0'">
     <FullAccount :accountInfo="pinia.getAccountInfo" />
   </div>
 </template>
