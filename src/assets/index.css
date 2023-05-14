@@ -181,7 +181,7 @@
   }
   /* SideBar */
   .parent-side-bar {
-    @apply transition-all shadow-2xl duration-500;
+    @apply transition-all shadow-2xl duration-500 delay-100;
     background-color: #1e1e2d;
     height: 100%;
   }
