@@ -11,7 +11,7 @@ const handleSideBarStatus = () => {
 </script>
 <template>
   <header class="parent-header">
-    <Logo @sideBar="handleSideBarStatus" :SideBarStatus="pinia.getSideBarStatus" />
+    <Logo @sideBar="handleSideBarStatus" :sideBarStatus="pinia.getSideBarStatus" />
     <Tools />
   </header>
 </template>

@@ -4,16 +4,27 @@ import { defineStore } from 'pinia'
 //////////////////////////////////
 export const useDashboardStore = defineStore('pinia', {
   state: () => ({
-    sideBarStatus: false
+    sideBarStatus: true,
+    accountInfo: '',
   }),
   ///////////////////
   actions: {
     handleSideBarStatus() {
       this.sideBarStatus = !this.sideBarStatus
+    },
+    requestGetAccountInfo() {
+      accountApi.info()
+        .then((response) => {
+          setTimeout(() => {
+            this.accountInfo = response.data
+          }, 2000);
+        })
+        .catch((error) => { console.log(error); })
     }
   },
   ///////////////////
   getters: {
     getSideBarStatus: (state) => state.sideBarStatus,
+    getAccountInfo: (state) => state.accountInfo,
   },
 })

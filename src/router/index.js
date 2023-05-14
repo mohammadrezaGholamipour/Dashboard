@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from '@/layout/default-layout.vue'
+
 import AuthService from '@/utils/AuthService'
+import table from '@/views/table/table.vue'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
 ////////////////////////
@@ -16,6 +18,11 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: home,
+        },
+        {
+          path: '/table',
+          name: 'table',
+          component: table,
         }
       ]
     },
@@ -23,7 +30,8 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: login,
-    }
+    },
+
   ]
 })
 //////////////////////////

@@ -1,7 +1,7 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core'
 //////////////////////////////////
-const props = defineProps(['SideBarStatus'])
+const props = defineProps(['sideBarStatus'])
 const emit = defineEmits(['sideBar'])
 //////////////////////////////////
 const { width } = useWindowSize()
@@ -12,9 +12,9 @@ const { width } = useWindowSize()
     <template v-if="width > 999">
       <p class="text-white fpnt-bold text-2xl">همراه فدک</p>
       <i @click="emit('sideBar')" class="text-xl cursor-pointer text-white"
-        :class="props.SideBarStatus ? 'fa-duotone fa-long-arrow-right' : 'fa-duotone fa-long-arrow-left'"></i>
+        :class="props.sideBarStatus ? 'fa-duotone fa-sidebar-flip' : 'fa-duotone fa-sidebar'"></i>
     </template>
-    <i @click="emit('sideBar')" v-else class="fa-duotone fa-navicon text-xl cursor-pointer text-white"></i>
+    <i @click="emit('sideBar')" v-else sideBar class="fa-duotone fa-navicon text-xl cursor-pointer text-white"></i>
   </div>
 </template>
 

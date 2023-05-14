@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, ErrorMessage, useField } from "vee-validate";
+import Loading from "@/components/loading.vue";
 import { useToast } from "vue-toastification";
 import AuthService from "@/utils/AuthService";
 import { useWindowSize } from '@vueuse/core'
@@ -14,6 +15,7 @@ const toast = useToast();
 ///////////////////////////
 const state = reactive({
   showPassword: false,
+  loading: false,
   timer: false,
   schema: yup.object({
     userName: yup
@@ -46,27 +48,35 @@ const onSubmit = () => {
 }
 /////////////////////////////////
 const handleAcceptLogin = (values) => {
+  state.loading = true
   const userlogin = {
     userName: values.userName,
     password: values.password,
   }
-  accountApi.login(userlogin)
-    .then((response) => {
-      if (response.data) {
-        AuthService.setTokenUser(response.data.accessToken)
-        router.push('/')
-      } else {
-        toast.error(response.message)
-      }
-    })
-    .catch((error) => {
-      toast.error(error.message)
-    })
+  setTimeout(() => {
+    accountApi.login(userlogin)
+      .then((response) => {
+        if (response.data) {
+          AuthService.setTokenUser(response.data.accessToken)
+          router.push('/')
+        } else {
+          toast.error(response.message)
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message)
+      }).finally(() => {
+        state.loading = false
+      })
+  }, 3000);
 }
 
 </script>
 <template>
   <div class="parent-login">
+    <transition-slide>
+      <Loading v-if="state.loading" />
+    </transition-slide>
     <div v-if="width >= 1000" class="logo-login">
       <img src="@/assets/images/bg-login.png">
     </div>
