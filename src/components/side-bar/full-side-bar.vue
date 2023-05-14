@@ -4,7 +4,7 @@ import FullAccount from './components/full-account.vue';
 import { useDashboardStore } from '@/store/pinia';
 import { ref } from 'vue'
 ////////////////////////////////
-const { width } = useWindowSize()
+const { width } = useWindowSize();
 const pinia = useDashboardStore();
 const sideBar = ref(null)
 ///////////////////////
@@ -14,11 +14,13 @@ onClickOutside(sideBar, (event) => {
     pinia.handleSideBarStatus(false)
   }
 })
+//////////////////////////
 </script>
 <template>
-  <div ref="sideBar" class="parent-side-bar delay-100" :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0'">
+  <div ref="sideBar" class="parent-side-bar" :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0'">
     <transition-scale :delay="200">
-      <FullAccount v-if="pinia.getSideBarStatus" :accountInfo="pinia.getAccountInfo" />
+      <FullAccount v-if="pinia.getSideBarStatus" @accountLogOut="pinia.requestAccountLogOut()"
+        :accountInfo="pinia.getAccountInfo" />
     </transition-scale>
   </div>
 </template>

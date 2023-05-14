@@ -4,6 +4,7 @@ import AccountInfo from './account-info.vue'
 import { reactive } from 'vue';
 //////////////////////////////
 const props = defineProps(['accountInfo'])
+const emit = defineEmits(['accountLogOut'])
 // ////////////////////////////////////
 const state = reactive({
   statusDialog: false
@@ -11,7 +12,7 @@ const state = reactive({
 ///////////////////////////
 const handleStatusDialog = (status) => {
   if (status) {
-
+    emit('accountLogOut')
   }
   state.statusDialog = false
 }

@@ -15,11 +15,18 @@ export const useDashboardStore = defineStore('pinia', {
     requestGetAccountInfo() {
       accountApi.info()
         .then((response) => {
-          setTimeout(() => {
-            this.accountInfo = response.data
-          }, 2000);
+          this.accountInfo = response.data
         })
         .catch((error) => { console.log(error); })
+    },
+    requestAccountLogOut() {
+      accountApi.logOut()
+        .then((response) => {
+          AuthService.removeTokenUser()
+          window.location.href = '/login'
+        }).catch((error) => {
+          console.log(error);
+        })
     }
   },
   ///////////////////
