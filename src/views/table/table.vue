@@ -2,7 +2,7 @@
 import { useWindowSize } from '@vueuse/core'
 import { reactive } from "vue";
 //////////////////////
-const { width } = useWindowSize()
+const { width } = useWindowSize();
 //////////////////////
 const state = reactive({
   ordersList: [
@@ -12,7 +12,7 @@ const state = reactive({
     { id: 4, billNumber: 368, userName: 'tavakoli1402', phone: '09100585915', totlaMoney: '859,000' },
     { id: 5, billNumber: 258, userName: 'scorpion2018', phone: '09108216164', totlaMoney: '369,000' },
   ]
-})
+});
 </script>
 <template>
   <div v-if="width >= 999" class="parent-table-system">

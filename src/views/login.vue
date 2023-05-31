@@ -3,14 +3,14 @@ import { useForm, ErrorMessage, useField } from "vee-validate";
 import Loading from "@/components/loading.vue";
 import { useToast } from "vue-toastification";
 import AuthService from "@/utils/AuthService";
-import { useWindowSize } from '@vueuse/core'
+import { useWindowSize } from '@vueuse/core';
 import { useRouter } from "vue-router";
-import accountApi from '@/api/acoount'
+import accountApi from '@/api/acoount';
 import { reactive } from "vue";
 import * as yup from "yup";
 ///////////////////////////
-const { width } = useWindowSize()
-const router = useRouter()
+const { width } = useWindowSize();
+const router = useRouter();
 const toast = useToast();
 ///////////////////////////
 const state = reactive({
@@ -27,7 +27,7 @@ const state = reactive({
       .required("رمز خود را وارد کنید")
       .min(4, "حداقل چهار کاراکتر باید باشد"),
   }),
-})
+});
 // ////////////////////////////////
 const { handleSubmit } = useForm({ validationSchema: state.schema });
 ///////////////////////////////
@@ -37,7 +37,7 @@ const { value: password } = useField("password");
 function onInvalidSubmit({ errors }) {
   const error = Object.values(errors)
   toast.error(error[0])
-}
+};
 ////////////////////////////////////
 const onSubmit = () => {
   clearTimeout(state.timer)
@@ -45,7 +45,7 @@ const onSubmit = () => {
     handleSubmit((values) => {
       handleAcceptLogin(values);
     }, onInvalidSubmit), 200);
-}
+};
 /////////////////////////////////
 const handleAcceptLogin = (values) => {
   state.loading = true
@@ -69,7 +69,7 @@ const handleAcceptLogin = (values) => {
         state.loading = false
       })
   }, 3000);
-}
+};
 
 </script>
 <template>
