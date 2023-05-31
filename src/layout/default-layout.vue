@@ -18,7 +18,11 @@ if (AuthService.getTokenUser()) {
     <main class="content">
       <FullSideBar />
       <div class="route">
-        <router-view />
+        <router-view v-slot="{ Component }">
+          <transition-slide>
+            <component :is="Component" />
+          </transition-slide>
+        </router-view>
       </div>
     </main>
     <!-- //////////////////////// -->

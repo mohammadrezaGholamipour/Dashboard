@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import accountSetting from '@/views/account-setting.vue'
 import DefaultLayout from '@/layout/default-layout.vue'
-
 import AuthService from '@/utils/AuthService'
 import table from '@/views/table/table.vue'
 import login from '@/views/login.vue'
@@ -23,6 +23,11 @@ const router = createRouter({
           path: '/table',
           name: 'table',
           component: table,
+        },
+        {
+          path: '/account-setting',
+          name: 'accountSetting',
+          component: accountSetting,
         }
       ]
     },

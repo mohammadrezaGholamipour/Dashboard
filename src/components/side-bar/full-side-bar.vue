@@ -17,10 +17,10 @@ onClickOutside(sideBar, (event) => {
 //////////////////////////
 </script>
 <template>
-  <div ref="sideBar" class="parent-side-bar" :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0'">
-    <transition-scale :delay="200">
+  <div ref="sideBar" class="parent-side-bar" :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0 overflow-hidden'">
+    <transition-slide :delay="200">
       <FullAccount v-if="pinia.getSideBarStatus" @accountLogOut="pinia.requestAccountLogOut()"
         :accountInfo="pinia.getAccountInfo" />
-    </transition-scale>
+    </transition-slide>
   </div>
 </template>

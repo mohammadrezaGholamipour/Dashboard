@@ -53,11 +53,51 @@
     outline: none;
     width: 100%;
   }
+  .input-grey {
+    @apply focus:border-slate-400 transition-all;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #f4f4f4;
+    border: 1px solid #e1e3ea;
+    border-radius: 0.475rem;
+    padding: 0.775rem 1rem;
+    color: #5e6278;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 10px 0px;
+    max-width: 365px;
+    min-width: 200px;
+    display: block;
+    outline: none;
+    width: 100%;
+  }
+  .btn-primary {
+    @apply hover:bg-[#128acf] transition-all;
+    background-color: #009ef7;
+    border-radius: 5px;
+    min-height: 42px;
+    min-width: 95px;
+    color: white;
+  }
+  .btn-gray {
+    @apply hover:bg-[#b1b1b1] transition-all hover:text-white;
+    background-color: #F9F9F9;
+    border-radius: 5px;
+    min-height: 42px;
+    min-width: 95px;
+    color: black;
+  }
+  .title {
+    @apply text-xl text-[#636363] font-bold;
+  }
+  .text {
+    @apply text-[#636363];
+    white-space: nowrap;
+  }
   .error-message {
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex flex-col  bg-white rounded-md overflow-hidden shadow-md;
+    @apply flex flex-col bg-white rounded-md overflow-hidden shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
@@ -184,6 +224,7 @@
     @apply transition-all shadow-2xl duration-500 delay-100;
     background-color: #1e1e2d;
     height: 100%;
+    z-index: 10;
   }
   .parent-account {
     border-bottom: 1px solid #2d2d43;
@@ -241,6 +282,22 @@
   .dialog-footer {
     @apply flex justify-evenly p-2 items-center border-t border-slate-300;
   }
+  /* account-setting */
+  .parent-account-setting {
+    @apply flex w-full flex-col gap-y-5 w-full justify-start items-center overflow-hidden;
+  }
+  .header-account-setting {
+    @apply w-full flex justify-start items-center;
+  }
+  .main-account-setting {
+    @apply w-full overflow-auto bg-white flex-col rounded-md shadow-sm p-5 flex justify-center items-start gap-y-20;
+  }
+  .footer-account-setting {
+    @apply w-full flex items-center justify-end gap-x-5;
+  }
+  .btn-change-profile {
+    @apply absolute bottom-[-10px] cursor-pointer;
+  }
   /* mediaQuery */
   @media only screen and (max-width: 999px) {
     .parent-login {
@@ -261,6 +318,9 @@
       position: absolute;
       right: 0;
       top: 0;
+    }
+    .route {
+      @apply p-5;
     }
   }
 }

@@ -1,11 +1,13 @@
 <script setup>
 import { useOnline, onClickOutside } from '@vueuse/core'
+import { useRouter } from 'vue-router'
 import { reactive, ref } from 'vue'
 //////////////////////////////////
 const props = defineProps(['accountInfo'])
 const emit = defineEmits(['dialogLogOut'])
 const popupElement = ref(null)
 const online = useOnline()
+const router = useRouter()
 // /////////////////////
 const state = reactive({
   popup: false
@@ -16,9 +18,8 @@ onClickOutside(popupElement, (event) => {
     state.popup = false
   }
 })
-// ///////////////////////
+////////////////////////////
 const handleLogOut = () => {
-  state.popup = false;
   emit('dialogLogOut');
 }
 </script>
@@ -40,7 +41,7 @@ const handleLogOut = () => {
     </div>
     <!-- ///////////////////////////////// -->
     <transition-slide>
-      <div ref="popupElement" v-if="state.popup" class="account-popup">
+      <div ref="popupElement" @click="state.popup = false" v-if="state.popup" class="account-popup">
         <div class="p-3 w-full flex items-center">
           <img width="50" class="rounded-md" :src="props.accountInfo.imageAddress"
             @error="$event.target.src = 'src/assets/images/account.png'">
@@ -53,8 +54,8 @@ const handleLogOut = () => {
           </div>
         </div>
         <div class="seperator"></div>
-        <div class="px-5 flex mt-2 flex-col justify-start items-center w-full text-slate-600">
-          <div class="account-popup-item">
+        <div class="px-3 flex mt-2 flex-col justify-start items-center w-full text-slate-600">
+          <div @click="router.push('/account-setting')" class="account-popup-item">
             <p>تنظیمات حساب کاربری</p>
             <i class="fa-duotone fa-gear"></i>
           </div>
