@@ -80,7 +80,7 @@
   }
   .btn-gray {
     @apply hover:bg-[#b1b1b1] transition-all hover:text-white;
-    background-color: #F9F9F9;
+    background-color: #f9f9f9;
     border-radius: 5px;
     min-height: 42px;
     min-width: 95px;
@@ -197,7 +197,7 @@
     width: 100%;
   }
   .route {
-    @apply w-full p-10 overflow-y-scroll;
+    @apply w-full scroll-smooth flex justify-start items-start p-10 overflow-y-scroll;
   }
   /* header */
   .header-logo {
@@ -221,7 +221,7 @@
   }
   /* SideBar */
   .parent-side-bar {
-    @apply transition-all shadow-2xl duration-500 delay-100;
+    @apply transition-all shadow-2xl duration-500;
     background-color: #1e1e2d;
     height: 100%;
     z-index: 10;
@@ -258,6 +258,12 @@
   .account-popup-item {
     @apply flex justify-between items-center p-2 w-full hover:bg-slate-100 rounded-md cursor-pointer hover:text-blue-400 transition-all;
   }
+  /* //////////footer//////////// */
+  .footer {
+    @apply w-full text-white flex justify-evenly flex-wrap p-2 px-4 gap-x-2 gap-y-2;
+    border-top: 1px solid #2d2d43;
+    background-color: #1e1e2d;
+  }
   /* //////////dialog//////////// */
   .dialog-back-ground {
     backdrop-filter: blur(40px);
@@ -284,13 +290,13 @@
   }
   /* account-setting */
   .parent-account-setting {
-    @apply flex w-full flex-col gap-y-5 w-full justify-start items-center overflow-hidden;
+    @apply flex flex-col w-full gap-y-5 justify-start items-center overflow-hidden;
   }
   .header-account-setting {
     @apply w-full flex justify-start items-center;
   }
   .main-account-setting {
-    @apply w-full overflow-auto bg-white flex-col rounded-md shadow-sm p-5 flex justify-center items-start gap-y-20;
+    @apply w-full overflow-scroll bg-white flex-col rounded-md shadow-sm p-5 flex justify-center items-start gap-y-20;
   }
   .footer-account-setting {
     @apply w-full flex items-center justify-end gap-x-5;

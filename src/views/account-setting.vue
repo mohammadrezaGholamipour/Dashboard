@@ -5,6 +5,7 @@ import { onMounted, reactive, watch } from 'vue'
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import uploaderApi from '@/api/upload'
+import acoountApi from '@/api/acoount'
 import * as yup from "yup";
 ////////////////////////////////////////
 const pinia = useDashboardStore()
@@ -14,15 +15,15 @@ const toast = useToast();
 onMounted(() => {
   state.userMobileNumber = pinia.getAccountInfo?.userMobileNumber;
   userFamily.value = pinia.getAccountInfo?.userFamily;
-  profile.value = pinia.getAccountInfo?.imageAddress;
+  imageName.value = pinia.getAccountInfo?.imageAddress;
   userName.value = pinia.getAccountInfo?.userName;
 })
 watch(() => pinia.getAccountInfo, (value) => {
   state.userMobileNumber = value?.userMobileNumber;
   userFamily.value = value?.userFamily;
-  profile.value = value?.imageAddress;
+  imageName.value = value?.imageAddress;
   userName.value = value?.userName;
-  state.clientProfile = null;
+  state.clientProfile = '';
 })
 //////////////////////////////
 const state = reactive({
@@ -38,7 +39,7 @@ const state = reactive({
       .string()
       .required("نام خانوادگی خود را وارد کنید")
       .nullable("نام خانوادگی خود را وارد کنید"),
-    profile: yup
+    imageName: yup
       .string()
       .required("لطفا پروفایل خود را بارگزاری کنید")
       .nullable("لطفا پروفایل خود را بارگزاری کنید")
@@ -49,7 +50,7 @@ const { handleSubmit } = useForm({ validationSchema: state.schema });
 ///////////////////////////////
 const { value: userFamily } = useField("userFamily");
 const { value: userName } = useField("userName");
-const { value: profile } = useField("profile");
+const { value: imageName } = useField("imageName");
 ////////////////////////////////////
 function onInvalidSubmit({ errors }) {
   const error = Object.values(errors)
@@ -60,13 +61,13 @@ const handleChangeAccount = () => {
   clearTimeout(state.timer)
   state.timer = setTimeout(
     handleSubmit((values) => {
-      console.log(values);
-    }, onInvalidSubmit), 200);
+      requestEditeAccount(values)
+    }, onInvalidSubmit), 1000);
 }
 ///////////////////////////////
 const handleProfile = (event) => {
-  state.clientProfile = '';
   if (event.target.files && event.target.files[0]) {
+    state.clientProfile = '';
     var reader = new FileReader();
     reader.onload = function (e) {
       state.clientProfile = e.target.result
@@ -89,9 +90,20 @@ const handleConvertProfileForUpload = async (image) => {
 const requestUploadProfile = (formData) => {
   uploaderApi.profile(formData)
     .then((response) => {
-      profile.value = response.data
+      state.clientProfile = '';
+      imageName.value = response.data
     }).catch(() => {
       toast.error('پروفایل بارگزاری نشد')
+    })
+}
+///////////////////////////////
+const requestEditeAccount = (user) => {
+  acoountApi.edit(user)
+    .then(() => {
+      pinia.requestGetAccountInfo()
+      toast.success('با موفقیت انجام شد')
+    }).catch(() => {
+      toast.error('تغییر حساب کاربری انجام نشد')
     })
 }
 </script>
@@ -109,12 +121,13 @@ const requestUploadProfile = (formData) => {
           <!-- /////////////////////////////// -->
           <transition-scale group>
             <img v-if="state.clientProfile" :src="state.clientProfile"
-              class="min-w-[90px] min-h-[90px] w-[90px] h-[90px]">
-            <img v-else @error="$event.target.src = 'src/assets/images/account.png'" :src="profile"
-              class="min-w-[90px] min-h-[90px] w-[90px] h-[90px]">
+              class="min-w-[90px] min-h-[90px] w-[90px] h-[90px] rounded-md">
+            <img v-else @error="$event.target.src = 'src/assets/images/account.png'"
+              :src="imageName ? imageName : 'src/assets/images/account.png'"
+              class="min-w-[90px] min-h-[90px] w-[90px] h-[90px] rounded-md">
           </transition-scale>
           <!-- //////////////////////////////// -->
-          <img @click="state.clientProfile = 'src/assets/images/account.png', profile = ''"
+          <img @click="state.clientProfile = 'src/assets/images/account.png', imageName = ''"
             class="btn-change-profile left-0" width="25" height="25" src="@/assets/images/remove.svg">
           <!-- //////////////////////// -->
           <label class="btn-change-profile right-0">
