@@ -21,13 +21,14 @@ if (AuthService.getTokenUser()) {
       <div class="route">
         <router-view v-slot="{ Component }">
           <transition-slide>
-            <component :is="Component" />
+            <component class="p-5" :is="Component" />
           </transition-slide>
         </router-view>
+        <Footer />
       </div>
     </main>
     <!-- //////////////////////// -->
-    <Footer />
+
   </div>
 </template>
 

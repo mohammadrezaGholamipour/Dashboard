@@ -191,13 +191,15 @@
     width: 100%;
   }
   .content {
+    justify-content: flex-start;
+    align-items: flex-start;
     overflow: hidden;
     display: flex;
     height: 100%;
     width: 100%;
   }
   .route {
-    @apply w-full scroll-smooth flex justify-start items-start p-10 overflow-y-scroll;
+    @apply w-full h-full scroll-smooth flex-col flex justify-between items-start overflow-y-scroll;
   }
   /* header */
   .header-logo {
@@ -260,9 +262,9 @@
   }
   /* //////////footer//////////// */
   .footer {
-    @apply w-full text-white flex justify-evenly flex-wrap p-2 px-4 gap-x-2 gap-y-2;
-    border-top: 1px solid #2d2d43;
+    @apply text-white flex justify-evenly flex-wrap p-2 px-4 gap-x-2 gap-y-2 m-2 rounded-xl shadow-md shadow-gray-500;
     background-color: #1e1e2d;
+    width: calc(100% - 16px);
   }
   /* //////////dialog//////////// */
   .dialog-back-ground {
@@ -290,7 +292,7 @@
   }
   /* account-setting */
   .parent-account-setting {
-    @apply flex flex-col w-full gap-y-5 justify-start items-center overflow-hidden;
+    @apply flex flex-col w-full gap-y-5 justify-start items-start;
   }
   .header-account-setting {
     @apply w-full flex justify-start items-center;
@@ -324,9 +326,6 @@
       position: absolute;
       right: 0;
       top: 0;
-    }
-    .route {
-      @apply p-5;
     }
   }
 }

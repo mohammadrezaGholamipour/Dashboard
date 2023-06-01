@@ -117,11 +117,11 @@ const requestEditeAccount = (user) => {
     <div class="main-account-setting">
       <div class="flex w-full justify-start gap-x-10 items-center">
         <p class="text w-[124px]">عکس پروفایل :</p>
-        <div class="flex shadow-md rounded-md p-3 relative">
+        <div class="flex shadow-md shadow-gray-300 bg-[#f4f4f4] rounded-md p-4 relative">
           <!-- /////////////////////////////// -->
           <transition-scale group>
             <img v-if="state.clientProfile" :src="state.clientProfile"
-              class="min-w-[90px] min-h-[90px] w-[90px] h-[90px] rounded-md">
+              class="min-w-[90px] min-h-[90px]  w-[90px] h-[90px] rounded-md">
             <img v-else @error="$event.target.src = 'src/assets/images/account.png'"
               :src="imageName ? imageName : 'src/assets/images/account.png'"
               class="min-w-[90px] min-h-[90px] w-[90px] h-[90px] rounded-md">
