@@ -27,6 +27,7 @@ watch(() => pinia.getAccountInfo, (value) => {
 })
 //////////////////////////////
 const state = reactive({
+  loading: false,
   timer: null,
   userMobileNumber: null,
   clientProfile: '',
@@ -88,6 +89,7 @@ const handleConvertProfileForUpload = async (image) => {
 }
 ///////////////////////////////
 const requestUploadProfile = (formData) => {
+  state.loading = true;
   uploaderApi.profile(formData)
     .then((response) => {
       state.clientProfile = '';
@@ -95,15 +97,21 @@ const requestUploadProfile = (formData) => {
     }).catch(() => {
       toast.error('پروفایل بارگزاری نشد')
     })
+    .finally(() => {
+      state.loading = false;
+    })
 }
 ///////////////////////////////
 const requestEditeAccount = (user) => {
+  state.loading = true;
   acoountApi.edit(user)
     .then(() => {
       pinia.requestGetAccountInfo()
       toast.success('با موفقیت انجام شد')
     }).catch(() => {
       toast.error('تغییر حساب کاربری انجام نشد')
+    }).finally(() => {
+      state.loading = false;
     })
 }
 </script>
@@ -119,13 +127,13 @@ const requestEditeAccount = (user) => {
         <p class="text w-[124px]">عکس پروفایل :</p>
         <div class="flex shadow-md shadow-gray-300 bg-[#f4f4f4] rounded-md p-4 relative">
           <!-- /////////////////////////////// -->
-          <transition-scale group>
+          <transition-slide group>
             <img v-if="state.clientProfile" :src="state.clientProfile"
               class="min-w-[90px] min-h-[90px]  w-[90px] h-[90px] rounded-md">
             <img v-else @error="$event.target.src = 'src/assets/images/account.png'"
               :src="imageName ? imageName : 'src/assets/images/account.png'"
               class="min-w-[90px] min-h-[90px] w-[90px] h-[90px] rounded-md">
-          </transition-scale>
+          </transition-slide>
           <!-- //////////////////////////////// -->
           <img @click="state.clientProfile = 'src/assets/images/account.png', imageName = ''"
             class="btn-change-profile left-0" width="25" height="25" src="@/assets/images/remove.svg">
@@ -150,7 +158,14 @@ const requestEditeAccount = (user) => {
           type="text" placeholder="تلفن همراه">
       </div>
       <div class="footer-account-setting">
-        <button @click="handleChangeAccount" class="btn-primary">تایید</button>
+        <button :disabled="state.loading"
+          :class="!state.loading ? 'btn-primary' : '!cursor-not-allowed btn-gray bg-slate-500 text-white'"
+          @click="handleChangeAccount">
+          <transition-slide group>
+            <i v-if="state.loading" class="fa-duotone fa-loader animate-spin transition-all duration-300"></i>
+            <p v-else>تایید</p>
+          </transition-slide>
+        </button>
         <button @click="router.push('/')" class="btn-gray">بازگشت</button>
       </div>
     </div>

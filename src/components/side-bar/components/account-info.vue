@@ -1,6 +1,6 @@
 <script setup>
 import { useOnline, onClickOutside } from '@vueuse/core'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { reactive, ref } from 'vue'
 //////////////////////////////////
 const props = defineProps(['accountInfo'])
@@ -8,6 +8,7 @@ const emit = defineEmits(['dialogLogOut'])
 const popupElement = ref(null)
 const online = useOnline()
 const router = useRouter()
+const route = useRoute()
 // /////////////////////
 const state = reactive({
   popup: false
@@ -57,8 +58,9 @@ const handleLogOut = () => {
           </div>
         </div>
         <div class="seperator"></div>
-        <div class="px-3 flex mt-2 flex-col justify-start items-center w-full text-slate-600">
-          <div @click="router.push('/account-setting')" class="account-popup-item">
+        <div class="px-3 flex mt-3 gap-2 flex-col justify-start items-center w-full text-slate-600">
+          <div @click="router.push('/account-setting')"
+            :class="route.path === '/account-setting' ? 'account-popup-item text-blue-400 bg-slate-100' : 'account-popup-item'">
             <p>تنظیمات حساب کاربری</p>
             <i class="fa-duotone fa-gear"></i>
           </div>

@@ -258,7 +258,7 @@
     height: 0;
   }
   .account-popup-item {
-    @apply flex justify-between items-center p-2 w-full hover:bg-slate-100 rounded-md cursor-pointer hover:text-blue-400 transition-all;
+    @apply flex justify-between items-center p-2 w-full rounded-md cursor-pointer transition-all hover:text-blue-400 hover:bg-slate-100;
   }
   /* //////////footer//////////// */
   .footer {
