@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 //////////////////////////////////
 export const useDashboardStore = defineStore('pinia', {
   state: () => ({
-    sideBarStatus: true,
+    sideBarStatus: false,
     accountInfo: '',
   }),
   ///////////////////

@@ -1,19 +1,17 @@
 <template>
   <router-view v-slot="{ Component }">
-    <transition  name="slide">
-      <component class="page" :is="Component" />
+    <transition  name="slide-fade">
+      <component class="page"  :is="Component" />
     </transition>
   </router-view>
 </template>
 <style scoped>
-.slide-enter-active, .slide-leave-active {
+.slide-fade-enter-active, .slide-fade-leave-active {
   transition: all .5s;
 }
-.slide-enter {
-  transform: translateX(100%);
-}
-.slide-leave-to {
-  transform: translateX(-100%);
+.slide-fade-enter, .slide-fade-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
 }
 .page {
   position: absolute;

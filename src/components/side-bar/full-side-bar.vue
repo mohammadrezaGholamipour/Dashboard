@@ -9,8 +9,9 @@ const pinia = useDashboardStore();
 const sideBar = ref(null)
 ///////////////////////
 onClickOutside(sideBar, (event) => {
-  const sideBarBtn = event.target?.attributes[0]?.name === "sidebar" ? false : true
-  if (width.value <= 999 && pinia.getSideBarStatus && sideBarBtn) {
+  const dialog = document.getElementsByClassName('dialog-back-ground')
+  const sideBarBtn = event.target?.attributes[0]?.name === "sidebar" ? false : true;
+  if (width.value <= 999 && pinia.getSideBarStatus && sideBarBtn && !dialog[0]) {
     pinia.handleSideBarStatus(false)
   }
 })
