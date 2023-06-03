@@ -15,6 +15,7 @@ const toast = useToast();
 ///////////////////////////
 const state = reactive({
   showPassword: false,
+  inputPasswordType: true,
   loading: false,
   timer: false,
   schema: yup.object({
@@ -87,7 +88,14 @@ const handleAcceptLogin = (values) => {
       <transition-expand>
         <ErrorMessage v-if="userName" class="error-message" name="userName" />
       </transition-expand>
-      <input v-model="password" class="input" type="text" placeholder="رمز عبور" />
+      <div class="relative w-full max-w-[365px] min-w-[200px] justify-center items-center">
+        <input v-model="password" class="input" :type="state.inputPasswordType ? 'password' : 'text'"
+          placeholder="رمز عبور">
+        <transition-fade @click="state.inputPasswordType = !state.inputPasswordType" group>
+          <i v-if="state.inputPasswordType" class="fa-duotone fa-eye text-xl absolute left-5 top-5  bottom-0"></i>
+          <i v-else class="fa-duotone fa-eye-slash text-xl absolute left-5 top-5 bottom-0 "></i>
+        </transition-fade>
+      </div>
       <transition-expand>
         <ErrorMessage v-if="password" class="error-message" name="password" />
       </transition-expand>

@@ -28,10 +28,6 @@
   ::-webkit-scrollbar {
     width: 0px !important;
   }
-  html {
-    background-color: #f9f9f9;
-    direction: rtl !important;
-  }
 }
 /* /////////////// */
 @layer components {
@@ -54,7 +50,7 @@
     width: 100%;
   }
   .input-grey {
-    @apply focus:border-slate-400 transition-all;
+    @apply focus:border-slate-400 transition-all dark:bg-[#1b1b29] dark:border-none;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     background-color: #f4f4f4;
     border: 1px solid #e1e3ea;
@@ -87,22 +83,21 @@
     color: black;
   }
   .title {
-    @apply text-xl text-[#636363] font-bold;
+    @apply text-xl text-[#636363] font-bold dark:text-white;
   }
   .text {
-    @apply text-[#636363];
+    @apply text-[#636363] dark:text-white;
     white-space: nowrap;
   }
   .error-message {
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex flex-col bg-white rounded-md overflow-hidden shadow-md;
+    @apply flex w-full gap-y-4 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
-    @apply flex justify-between items-center;
-    padding: 16px 29px 0px 29px;
+    @apply flex justify-between p-5 w-full items-center;
   }
   .table-system {
     padding: 26px 29px 10px 29px;
@@ -184,6 +179,7 @@
     width: 100vw;
   }
   .parent-header {
+    @apply dark:bg-[#1e1e2d];
     box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
     transition: left 0.3s ease;
     background-color: white;
@@ -199,7 +195,8 @@
     width: 100%;
   }
   .route {
-    @apply w-full h-full scroll-smooth flex-col flex justify-between items-start overflow-y-scroll;
+    @apply p-10 pb-2 w-full h-full scroll-smooth gap-y-6 flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-between items-start overflow-y-scroll;
+
   }
   /* header */
   .header-logo {
@@ -237,18 +234,18 @@
     @apply w-full relative flex justify-between items-center text-white;
   }
   .account-popup {
-    @apply flex flex-col shadow-xl bg-white rounded-md absolute justify-start items-center py-[13px];
+    @apply flex flex-col shadow-sm bg-white dark:bg-[#1e1e2d] dark:shadow-gray-600 rounded-md absolute justify-start items-center py-[13px];
     width: 250px;
     right: 75px;
     top: 50px;
   }
   .account-popup-badge {
-    background-color: #e8fff3;
-    padding: 3.5px 6.5px;
+    background-color: #57d694;
+    padding: 3px 6px;
     border-radius: 10px;
     margin-right: 10px;
-    font-size: 0.85rem;
-    color: #50cd89;
+    font-size: 0.7rem;
+    color: #16723e;
     font-weight: 600;
   }
   .seperator {
@@ -258,13 +255,13 @@
     height: 0;
   }
   .account-popup-item {
-    @apply flex justify-between items-center p-2 w-full rounded-md cursor-pointer transition-all hover:text-blue-400 hover:bg-slate-100;
+    @apply flex text justify-between items-center p-2 w-full rounded-md cursor-pointer transition-all hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-[#151521];
   }
   /* //////////footer//////////// */
   .footer {
-    @apply text-white flex justify-evenly flex-wrap p-2 px-4 gap-x-2 gap-y-2 m-2 rounded-xl shadow-md shadow-gray-500;
+    @apply text-white flex justify-evenly flex-wrap p-2 px-4 gap-x-2 gap-y-2 rounded-xl;
     background-color: #1e1e2d;
-    width: calc(100% - 16px);
+    width: 100%;
   }
   /* //////////dialog//////////// */
   .dialog-back-ground {
@@ -298,7 +295,7 @@
     @apply w-full flex justify-start items-center;
   }
   .main-account-setting {
-    @apply w-full overflow-scroll bg-white flex-col rounded-md shadow-sm p-5 flex justify-center items-start gap-y-20;
+    @apply w-full overflow-scroll bg-white dark:bg-[#1e1e2d] flex-col rounded-md shadow-sm p-6 flex justify-center items-start gap-y-20;
   }
   .footer-account-setting {
     @apply w-full flex items-center justify-end gap-x-5;
@@ -326,6 +323,11 @@
       position: absolute;
       right: 0;
       top: 0;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .route {
+      @apply p-2 pt-5;
     }
   }
 }

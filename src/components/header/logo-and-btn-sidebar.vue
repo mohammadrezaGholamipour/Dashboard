@@ -14,7 +14,12 @@ const { width } = useWindowSize()
       <i @click="emit('sideBar')" class="text-xl cursor-pointer text-white"
         :class="props.sideBarStatus ? 'fa-duotone fa-sidebar-flip' : 'fa-duotone fa-sidebar'"></i>
     </template>
-    <i @click="emit('sideBar')" v-else sideBar class="fa-duotone fa-navicon text-xl cursor-pointer text-white"></i>
+    <template v-else>
+      <transition-scale @click="emit('sideBar')" group>
+        <i v-if="props.sideBarStatus" sideBar class="fa-sharp fa-light fa-xmark text-xl cursor-pointer text-white"></i>
+        <i v-else sideBar class="fa-duotone fa-navicon text-xl cursor-pointer text-white"></i>
+      </transition-scale>
+    </template>
   </div>
 </template>
 

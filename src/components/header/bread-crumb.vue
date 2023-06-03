@@ -9,7 +9,7 @@ const state = reactive({
 </script>
 <template>
   <div class="bread-crumb">
-    <p class="text-[#181C32] font-extrabold text-lg">داشبورد مدیریت</p>
+    <p class="text-[#181C32] font-extrabold text-lg dark:text-white">داشبورد مدیریت</p>
     <ul class="flex items-center text-[#A1A5B7]">
       <li  v-for="(item, index) in state.breadCrumb" :key="index">
         <router-link :to="item.link">{{ item.name }}</router-link> 

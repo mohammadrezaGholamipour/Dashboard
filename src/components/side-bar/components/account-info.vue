@@ -46,12 +46,12 @@ const handleLogOut = () => {
     <!-- ///////////////////////////////// -->
     <transition-slide>
       <div ref="popupElement" @click="state.popup = false" v-if="state.popup" class="account-popup">
-        <div class="p-3 w-full flex items-center">
+        <div class="p-3 gap-x-3 w-full flex items-center">
           <img width="50" class="rounded-md" :src="props.accountInfo.imageAddress"
             @error="$event.target.src = 'src/assets/images/account.png'">
           <div class="flex flex-col gap-y-2 mr-1">
             <div class="flex items-center">
-              <p style="font-weight: 600;font-size: 1.075rem;color: black;">{{ props.accountInfo.userName }}</p>
+              <p class="text" >{{ props.accountInfo.userName }}</p>
               <span class="account-popup-badge">دسترسی کامل</span>
             </div>
             <p class="text-gray-400" style="font-weight: 500;font-size: 0.85rem">{{ props.accountInfo.userFamily }}</p>
@@ -60,7 +60,7 @@ const handleLogOut = () => {
         <div class="seperator"></div>
         <div class="px-3 flex mt-3 gap-2 flex-col justify-start items-center w-full text-slate-600">
           <div @click="router.push('/account-setting')"
-            :class="route.path === '/account-setting' ? 'account-popup-item text-blue-400 bg-slate-100' : 'account-popup-item'">
+            :class="route.path === '/account-setting' ? 'account-popup-item text-blue-400 bg-slate-100 dark:bg-[#151521] dark:text-blue-400' : 'account-popup-item'">
             <p>تنظیمات حساب کاربری</p>
             <i class="fa-duotone fa-gear"></i>
           </div>

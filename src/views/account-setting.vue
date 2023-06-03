@@ -125,7 +125,7 @@ const requestEditeAccount = (user) => {
     <div class="main-account-setting">
       <div class="flex w-full justify-start gap-x-10 items-center">
         <p class="text w-[124px]">عکس پروفایل :</p>
-        <div class="flex shadow-md shadow-gray-300 bg-[#f4f4f4] rounded-md p-4 relative">
+        <div class="flex bg-[#f4f4f4] dark:bg-[#1b1b29] dark:shadow-xl rounded-md p-4 relative">
           <!-- /////////////////////////////// -->
           <transition-slide group>
             <img v-if="state.clientProfile" :src="state.clientProfile"
