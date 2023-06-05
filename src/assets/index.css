@@ -265,7 +265,7 @@
   }
   /* //////////dialog//////////// */
   .dialog-back-ground {
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(3px);
     justify-content: center;
     align-items: center;
     position: fixed;

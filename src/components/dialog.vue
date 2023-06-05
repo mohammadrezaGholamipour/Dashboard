@@ -1,4 +1,7 @@
 <script setup>
+import { onClickOutside } from '@vueuse/core'
+import { ref } from 'vue';
+//////////////////////////////
 const emit = defineEmits(['dialogStatus'])
 const { statusDialog, dialogWidth, headerStatus, headerText, footerStatus, btnAcceptStatus, btnCancelStatus, btnAcceptText, btnCancelText } = defineProps({
   statusDialog: {
@@ -51,14 +54,20 @@ const { statusDialog, dialogWidth, headerStatus, headerText, footerStatus, btnAc
 const handleDialogStatus = (status) => {
   emit('dialogStatus', status)
 }
+/////////////////////////////
+const card = ref(null)
+onClickOutside(card, () => {
+  card.value.className = 'dialog-card animate-pulse'
+})
+
 </script>
 <template>
   <Teleport to="#app">
     <transition-slide>
       <div v-if="statusDialog" class="dialog-back-ground">
-        <div class="dialog-card" :style="{ width: `${dialogWidth}px` }">
+        <div ref="card" class="dialog-card" :style="{ width: `${dialogWidth}px` }">
           <!-- ///////////////////////// -->
-          <div v-if="headerStatus" class="dialog-header">
+          <div v-if="headerStatus" class="dialog-header ">
             <p class="font-bold">{{ headerText }}</p>
           </div>
           <!-- ////////////////////////// -->
