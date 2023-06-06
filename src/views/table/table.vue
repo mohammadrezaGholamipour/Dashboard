@@ -23,9 +23,9 @@ const state = reactive({
       </button>
       <div class="flex w-full justify-end items-center gap-x-3">
         <div class="relative w-full max-w-[365px] min-w-[200px] justify-center items-center">
-          <input class="input-grey" type="text" placeholder="عنوان محصول را وارد کنید">
+          <input class="input-grey m-0" type="text" placeholder="عنوان محصول را وارد کنید">
           <i
-            class="fa-duotone fa-magnifying-glass text-xl absolute left-5 top-5 bottom-0 cursor-pointer hover:text-blue-500 transition-all dark:text-white"></i>
+            class="fa-duotone fa-magnifying-glass text-xl absolute left-5 top-3 bottom-0 cursor-pointer hover:text-blue-500 transition-all dark:text-white"></i>
         </div>
         <button class="btn-primary p-3">
           <p>فیلتر ها</p>
@@ -36,33 +36,33 @@ const state = reactive({
       <table class="table-system">
         <thead>
           <tr>
-            <th>
-              <div class="flex items-center gap-x-2">
+            <th class="w-[100px]">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>ردیف</p><i class="fa-duotone fa-arrow-down-wide-short"></i>
               </div>
             </th>
             <th>
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>شماره فاکتور</p><i class="fa-duotone fa-ballot-check"></i>
               </div>
             </th>
             <th>
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>نام کاربری</p> <i class="fa-duotone fa-user"></i>
               </div>
             </th>
             <th>
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>تلفن همراه</p> <i class="fa-duotone fa-mobile"></i>
               </div>
             </th>
             <th>
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>مبلغ کل</p><i class="fa-duotone fa-money-bill"></i>
               </div>
             </th>
             <th>
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center justify-center gap-x-2">
                 <p>عملیات</p><i class="fa-sharp fa-regular fa-sliders"></i>
               </div>
             </th>

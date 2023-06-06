@@ -93,7 +93,7 @@
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex w-full gap-y-4 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden shadow-md;
+    @apply flex w-full gap-y-4 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden overflow-x-scroll shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
@@ -102,7 +102,7 @@
   .table-system {
     padding: 26px 29px 10px 29px;
     border-collapse: collapse;
-    text-align: right;
+    text-align: center;
     width: 100%;
   }
   .table-system tbody tr {
@@ -117,7 +117,7 @@
     overflow: hidden;
   }
   .table-system thead th {
-    padding: 13px 10px 13px 10px;
+    padding: 13px;
   }
   .parent-table-mobile {
     @apply flex flex-col justify-start items-center;
@@ -136,7 +136,23 @@
     max-width: 150px;
     overflow: hidden;
   }
-  /* login */
+  .parent-drop-down {
+    @apply flex flex-col items-center justify-center text relative;
+    width: clamp(165px, 100%, 200px);
+  }
+  .btn-drop-down {
+    @apply bg-[#F4F4F4] dark:bg-[#1e1e2d] cursor-pointer w-full rounded-md overflow-hidden flex justify-between items-center p-[13px];
+  }
+  .list-drop-down {
+    @apply bg-white dark:bg-[#1e1e2d] absolute top-14 w-full shadow-md overflow-hidden rounded-md;
+  }
+  .item-drop-down {
+    @apply p-3 border-b border-dashed cursor-pointer hover:bg-[#f9f9f9] transition-all hover:text-[#009ef7];
+  }
+  p.item-drop-down:last-child {
+    border: none;
+  }
+  /*///////////login///////////*/
   .parent-login {
     flex-wrap: wrap;
     display: flex;
@@ -196,7 +212,6 @@
   }
   .route {
     @apply p-10 pb-2 w-full h-full scroll-smooth gap-y-6 flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-between items-start overflow-y-scroll;
-
   }
   /* header */
   .header-logo {

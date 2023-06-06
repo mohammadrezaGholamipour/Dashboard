@@ -57,7 +57,10 @@ const handleDialogStatus = (status) => {
 /////////////////////////////
 const card = ref(null)
 onClickOutside(card, () => {
-  card.value.className = 'dialog-card animate-pulse'
+  card.value.className = 'dialog-card scale-125 transition-all duration-300'
+  setTimeout(() => {
+    card.value.className = 'dialog-card'
+  }, 100);
 })
 
 </script>

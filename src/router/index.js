@@ -3,6 +3,7 @@ import accountSetting from '@/views/account-setting.vue'
 import DefaultLayout from '@/layout/default-layout.vue'
 import AuthService from '@/utils/AuthService'
 import table from '@/views/table/table.vue'
+import dropDown from '@/views/drop-down.vue'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
 ////////////////////////
@@ -23,6 +24,11 @@ const router = createRouter({
           path: '/table',
           name: 'table',
           component: table,
+        },
+        {
+          path: '/drop-down',
+          name: 'dropDown',
+          component: dropDown,
         },
         {
           path: '/account-setting',
