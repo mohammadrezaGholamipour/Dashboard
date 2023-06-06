@@ -152,6 +152,12 @@
   p.item-drop-down:last-child {
     border: none;
   }
+  .parent-input-radios {
+    @apply flex items-center justify-start gap-x-5;
+  }
+  .input-radio {
+    @apply flex items-center gap-x-2;
+  }
   /*///////////login///////////*/
   .parent-login {
     flex-wrap: wrap;
