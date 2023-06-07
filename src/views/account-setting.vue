@@ -145,14 +145,14 @@ const requestEditeAccount = (user) => {
           <!-- ////////////////////////// -->
         </div>
       </div>
-      <div class="flex w-full flex-wrap justify-start gap-x-10 items-center">
+      <div class="flex w-full flex-wrap justify-start gap-x-10 gap-y-5 items-center">
         <p class="text w-[124px]">نام کامل :</p>
-        <div class="flex gap-x-5 flex-wrap">
+        <div class="flex gap-y-5 flex-wrap">
           <input v-model="userName" class="input-grey" type="text" placeholder="نام">
           <input v-model="userFamily" class="input-grey" type="text" placeholder="نام خانوادگی">
         </div>
       </div>
-      <div class="flex flex-wrap w-full justify-start gap-x-10 items-center">
+      <div class="flex flex-wrap w-full justify-start gap-x-10 gap-y-5 items-center">
         <p class="text w-[124px]"> شماره تلفن همراه :</p>
         <input :value="state.userMobileNumber" disabled class="input-grey bg-[#D9D8D8] hover:cursor-not-allowed"
           type="text" placeholder="تلفن همراه">

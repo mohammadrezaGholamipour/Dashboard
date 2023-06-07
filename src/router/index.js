@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import accountSetting from '@/views/account-setting.vue'
 import DefaultLayout from '@/layout/default-layout.vue'
-import inputRadio from '@/views/input-radio.vue'
 import AuthService from '@/utils/AuthService'
-import dropDown from '@/views/drop-down.vue'
-import table from '@/views/table/table.vue'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
 ////////////////////////
@@ -20,21 +17,6 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: home,
-        },
-        {
-          path: '/table',
-          name: 'table',
-          component: table,
-        },
-        {
-          path: '/drop-down',
-          name: 'dropDown',
-          component: dropDown,
-        },
-        {
-          path: '/input-radio',
-          name: 'inputRadio',
-          component: inputRadio,
         },
         {
           path: '/account-setting',

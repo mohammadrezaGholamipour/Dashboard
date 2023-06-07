@@ -20,7 +20,7 @@ if (AuthService.getTokenUser()) {
       <FullSideBar />
       <div class="route">
         <router-view v-slot="{ Component }">
-          <transition-slide>
+          <transition-slide group class="w-full h-full overflow-scroll">
             <component :is="Component" />
           </transition-slide>
         </router-view>
@@ -28,7 +28,6 @@ if (AuthService.getTokenUser()) {
       </div>
     </main>
     <!-- //////////////////////// -->
-
   </div>
 </template>
 

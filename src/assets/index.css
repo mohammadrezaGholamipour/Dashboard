@@ -59,7 +59,6 @@
     color: #5e6278;
     font-weight: 500;
     line-height: 1.5;
-    margin: 10px 0px;
     max-width: 365px;
     min-width: 200px;
     display: block;
@@ -69,6 +68,14 @@
   .btn-primary {
     @apply hover:bg-[#128acf] transition-all;
     background-color: #009ef7;
+    border-radius: 5px;
+    min-height: 42px;
+    min-width: 95px;
+    color: white;
+  }
+  .btn-green {
+    @apply hover:bg-[#42a16d] transition-all;
+    background-color: #50cd89;
     border-radius: 5px;
     min-height: 42px;
     min-width: 95px;
@@ -93,20 +100,22 @@
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex w-full gap-y-4 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden overflow-x-scroll shadow-md;
+    @apply flex w-full p-5 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden overflow-x-scroll shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
-    @apply flex justify-between p-5 w-full items-center;
+    @apply flex justify-between w-full items-center;
   }
   .table-system {
-    padding: 26px 29px 10px 29px;
     border-collapse: collapse;
     text-align: center;
+    margin-top: 20px;
+    margin-top: 20px;
     width: 100%;
   }
   .table-system tbody tr {
-    border-top-color: #e1e3ea;
+    @apply dark:border-[#1b1b29];
+    border-top-color: #f4f4f4;
     border-top-style: dashed;
     border-top-width: 1px;
   }
@@ -120,10 +129,10 @@
     padding: 13px;
   }
   .parent-table-mobile {
-    @apply flex flex-col justify-start items-center;
+    @apply flex flex-col justify-start gap-y-3 pb-3 items-center;
   }
   .table-mobile {
-    @apply flex justify-between items-center mt-3 rounded-md shadow-md p-3 bg-white;
+    @apply flex justify-between items-center rounded-md shadow-md p-3 bg-white;
     min-width: 280px;
     width: 100%;
   }
@@ -136,18 +145,23 @@
     max-width: 150px;
     overflow: hidden;
   }
+  .parent-table-filter {
+    @apply w-full flex py-1  my-[10px] items-center justify-between gap-x-3;
+  }
   .parent-drop-down {
     @apply flex flex-col items-center justify-center text relative;
-    width: clamp(165px, 100%, 200px);
+    min-width: 165px;
+    max-width: 200px;
+    width: 100%;
   }
   .btn-drop-down {
-    @apply bg-[#F4F4F4] dark:bg-[#1e1e2d] cursor-pointer w-full rounded-md overflow-hidden flex justify-between items-center p-[13px];
+    @apply bg-white dark:bg-[#1e1e2d] cursor-pointer w-full rounded-md overflow-hidden flex justify-between items-center p-[13px];
   }
   .list-drop-down {
-    @apply bg-white dark:bg-[#1e1e2d] absolute top-14 w-full shadow-md overflow-hidden rounded-md;
+    @apply bg-white dark:bg-[#1e1e2d] absolute top-14 w-full shadow-md overflow-hidden rounded-md z-10;
   }
   .item-drop-down {
-    @apply p-3 border-b border-dashed cursor-pointer hover:bg-[#f9f9f9] transition-all hover:text-[#009ef7];
+    @apply p-3 border-b border-solid cursor-pointer hover:bg-[#f9f9f9] transition-all hover:text-[#009ef7];
   }
   p.item-drop-down:last-child {
     border: none;
@@ -156,7 +170,13 @@
     @apply flex items-center justify-start gap-x-5;
   }
   .input-radio {
-    @apply flex items-center gap-x-2;
+    @apply flex items-center gap-x-2 text;
+  }
+  .radio-Inactive {
+    @apply w-[22px] h-[22px] bg-white rounded-full shadow-sm;
+  }
+  .radio-active {
+    @apply w-[22px] h-[22px] bg-[#F4F4F4] rounded-full shadow-sm border-blue-500 border-[6px];
   }
   /*///////////login///////////*/
   .parent-login {
@@ -348,7 +368,7 @@
   }
   @media only screen and (max-width: 500px) {
     .route {
-      @apply p-2 pt-5;
+      @apply p-2 gap-y-0;
     }
   }
 }
