@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import accountSetting from '@/views/account-setting.vue'
 import DefaultLayout from '@/layout/default-layout.vue'
+import categories from '@/views/categories.vue'
 import AuthService from '@/utils/AuthService'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
-////////////////////////
+////////////////////////////
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,6 +23,11 @@ const router = createRouter({
           path: '/account-setting',
           name: 'accountSetting',
           component: accountSetting,
+        },
+        {
+          path: '/categories',
+          name: 'categories',
+          component: categories,
         }
       ]
     },

@@ -6,11 +6,17 @@ export const useDashboardStore = defineStore('pinia', {
   state: () => ({
     sideBarStatus: false,
     accountInfo: '',
+    breadCrumb: [
+      { name: 'صفحه اصلی', link: '/' }
+    ]
   }),
   ///////////////////
   actions: {
     handleSideBarStatus() {
       this.sideBarStatus = !this.sideBarStatus
+    },
+    handleBreadCrumb(breadCrumb) {
+      this.breadCrumb = breadCrumb
     },
     requestGetAccountInfo() {
       accountApi.info()
@@ -23,6 +29,7 @@ export const useDashboardStore = defineStore('pinia', {
       accountApi.logOut()
         .then(() => {
           AuthService.removeTokenUser()
+          this.accountInfo = ''
           window.location.href = '/login'
         }).catch((error) => {
           console.log(error);
@@ -33,5 +40,6 @@ export const useDashboardStore = defineStore('pinia', {
   getters: {
     getSideBarStatus: (state) => state.sideBarStatus,
     getAccountInfo: (state) => state.accountInfo,
+    getbreadCrumb: (state) => state.breadCrumb,
   },
 })

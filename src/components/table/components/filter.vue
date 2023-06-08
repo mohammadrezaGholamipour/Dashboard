@@ -14,7 +14,7 @@ import DropDown from '@/components/drop-down.vue'
       <div class="flex items-center flex-nowrap gap-x-3">
         <p>گروه ها :</p>
         <DropDown />
-        <div class="h-[38px] border-slate-300 border"></div>
+        <div class="h-[38px] border-slate-300 border rounded-full"></div>
       </div>
       <div class="flex items-center flex-nowrap gap-x-4">
         <p class="font-bold">نوع نمایش :</p>

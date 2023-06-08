@@ -1,5 +1,4 @@
 <script setup>
-import FullTable from '@/components/table/full-table.vue'
 import { useDashboardStore } from '@/store/pinia'
 import { onMounted } from 'vue'
 /////////////////////////////////
@@ -8,10 +7,11 @@ const pinia = useDashboardStore()
 onMounted(() => {
   const breadCrumb = [
     { name: 'صفحه اصلی', link: '/' },
+    { name: 'دسته بندی ها', link: '/categories' },
   ]
   pinia.handleBreadCrumb(breadCrumb)
 })
 </script>
 <template>
-  <FullTable />
+  <div> categories</div>
 </template>

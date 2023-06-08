@@ -2,8 +2,10 @@
 import { onClickOutside, useWindowSize } from '@vueuse/core'
 import FullAccount from './components/full-account.vue';
 import { useDashboardStore } from '@/store/pinia';
-import { ref } from 'vue'
+import Menu from './components/menu.vue';
+import { ref, watch } from 'vue'
 ////////////////////////////////
+const sideBarContentStatus = ref(false)
 const { width } = useWindowSize();
 const pinia = useDashboardStore();
 const sideBar = ref(null)
@@ -16,13 +18,27 @@ onClickOutside(sideBar, (event) => {
   }
 })
 //////////////////////////
+watch(() => pinia.getSideBarStatus, (value) => {
+  if (value) {
+    setTimeout(() => {
+      sideBarContentStatus.value = true
+    }, 400);
+  } else {
+    sideBarContentStatus.value = false
+  }
+})
 </script>
 <template>
   <div ref="sideBar" class="parent-side-bar"
     :class="pinia.getSideBarStatus ? 'min-w-[265px] w-[265px]' : 'min-w-0 w-0 overflow-hidden'">
-    <transition-slide :delay="200">
-      <FullAccount v-if="pinia.getSideBarStatus" @accountLogOut="pinia.requestAccountLogOut()"
-        :accountInfo="pinia.getAccountInfo" />
-    </transition-slide>
+    <FullAccount :class="{ 'Inactive': !sideBarContentStatus }" @accountLogOut="pinia.requestAccountLogOut()"
+      :accountInfo="pinia.getAccountInfo" />
+    <Menu :class="{ 'Inactive': !sideBarContentStatus }" />
   </div>
 </template>
+<style>
+.Inactive {
+  transform: translateX(265px) !important;
+  transition: transform 0.1s ease-in-out !important;
+}
+</style>

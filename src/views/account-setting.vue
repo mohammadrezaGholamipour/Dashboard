@@ -13,6 +13,12 @@ const router = useRouter()
 const toast = useToast();
 //////////////////////////////
 onMounted(() => {
+    const breadCrumb = [
+    { name: 'صفحه اصلی', link: '/' },
+    { name: ' تنظیمات حساب کاربری', link: '/account-setting' }
+  ]
+  pinia.handleBreadCrumb(breadCrumb)
+  ////////////////////////////////////////////////////F
   state.userMobileNumber = pinia.getAccountInfo?.userMobileNumber;
   userFamily.value = pinia.getAccountInfo?.userFamily;
   imageName.value = pinia.getAccountInfo?.imageAddress;

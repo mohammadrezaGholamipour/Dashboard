@@ -10,13 +10,11 @@
 .slide-fade-leave-active {
   transition: all .5s;
 }
-
 .slide-fade-enter,
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(50px);
 }
-
 .page {
   position: absolute;
   top: 0;
