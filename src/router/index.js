@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import accountSetting from '@/views/account-setting.vue'
 import DefaultLayout from '@/layout/default-layout.vue'
-import categories from '@/views/categories.vue'
+import categories from '@/views/categories/index.vue'
 import AuthService from '@/utils/AuthService'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'

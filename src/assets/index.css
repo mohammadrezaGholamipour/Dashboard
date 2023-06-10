@@ -73,6 +73,14 @@
     min-width: 95px;
     color: white;
   }
+  .btn-red {
+    @apply hover:bg-[#bb1f46] transition-all;
+    background-color: #f1416c;
+    border-radius: 5px;
+    min-height: 42px;
+    min-width: 95px;
+    color: white;
+  }
   .btn-green {
     @apply hover:bg-[#42a16d] transition-all;
     background-color: #50cd89;
@@ -237,7 +245,7 @@
     width: 100%;
   }
   .route {
-    @apply p-10 pb-2 w-full h-full scroll-smooth gap-y-6 flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-between items-start overflow-y-scroll;
+    @apply p-10 pb-2 w-full h-full flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-between items-start overflow-hidden;
   }
   /* header */
   .header-logo {
@@ -358,6 +366,27 @@
   .btn-change-profile {
     @apply absolute bottom-[-10px] cursor-pointer;
   }
+  /* categories */
+  .parent-categories {
+    @apply flex flex-col w-full justify-start gap-y-3 items-start;
+  }
+  .header-categories {
+    @apply w-full flex items-center justify-between;
+  }
+  .main-categories {
+    @apply flex justify-start gap-y-7 items-center flex-col w-full dark:bg-[#1e1e2d] py-5 rounded-md;
+  }
+  .category {
+    @apply flex cursor-pointer hover:shadow-md transition-all duration-500  flex-col gap-y-3 h-[182px] justify-center p-5 items-center rounded-lg shadow-sm bg-white dark:bg-[#151521] text;
+    width: 170px;
+  }
+  .text-no-wrap-category {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+  }
   /* mediaQuery */
   @media only screen and (max-width: 999px) {
     .parent-login {
@@ -382,7 +411,10 @@
   }
   @media only screen and (max-width: 500px) {
     .route {
-      @apply p-2 gap-y-0;
+      @apply p-2 pt-5 gap-y-0;
+    }
+    .category {
+      @apply flex-grow;
     }
   }
 }
