@@ -68,7 +68,7 @@ onClickOutside(card, () => {
   <Teleport to="#app">
     <transition-slide>
       <div v-if="statusDialog" class="dialog-back-ground">
-        <div ref="card" class="dialog-card" :style="{ width: `${dialogWidth}px` }">
+        <div ref="card" class="dialog-card" :style="{ minWidth: `${dialogWidth}px` }">
           <!-- ///////////////////////// -->
           <div v-if="headerStatus" class="dialog-header ">
             <p class="font-bold">{{ headerText }}</p>

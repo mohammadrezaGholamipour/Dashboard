@@ -1,41 +1,41 @@
 <script setup>
+import { useDashboardStore } from '@/store/pinia';
 import { useForm, useField } from "vee-validate";
-import { useDashboardStore } from '@/store/pinia'
-import { onMounted, reactive, watch } from 'vue'
+import { onMounted, reactive, watch } from 'vue';
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
-import uploaderApi from '@/api/upload'
-import acoountApi from '@/api/acoount'
+import uploaderApi from '@/api/upload';
+import acoountApi from '@/api/acoount';
 import * as yup from "yup";
-////////////////////////////////////////
+//////////////////////////////////////
 const pinia = useDashboardStore()
 const router = useRouter()
 const toast = useToast();
-//////////////////////////////
+////////////////////////
 onMounted(() => {
-    const breadCrumb = [
+  const breadCrumb = [
     { name: 'صفحه اصلی', link: '/' },
     { name: ' تنظیمات حساب کاربری', link: '/account-setting' }
-  ]
-  pinia.handleBreadCrumb(breadCrumb)
-  ////////////////////////////////////////////////////F
+  ];
+  pinia.handleBreadCrumb(breadCrumb);
+  ////////////////////////////////////////////////////
   state.userMobileNumber = pinia.getAccountInfo?.userMobileNumber;
-  userFamily.value = pinia.getAccountInfo?.userFamily;
   imageName.value = pinia.getAccountInfo?.imageAddress;
+  userFamily.value = pinia.getAccountInfo?.userFamily;
   userName.value = pinia.getAccountInfo?.userName;
 })
 watch(() => pinia.getAccountInfo, (value) => {
   state.userMobileNumber = value?.userMobileNumber;
-  userFamily.value = value?.userFamily;
   imageName.value = value?.imageAddress;
+  userFamily.value = value?.userFamily;
   userName.value = value?.userName;
   state.clientProfile = '';
 })
 //////////////////////////////
 const state = reactive({
+  userMobileNumber: null,
   loading: false,
   timer: null,
-  userMobileNumber: null,
   clientProfile: '',
   schema: yup.object({
     userName: yup
@@ -56,8 +56,8 @@ const state = reactive({
 const { handleSubmit } = useForm({ validationSchema: state.schema });
 ///////////////////////////////
 const { value: userFamily } = useField("userFamily");
-const { value: userName } = useField("userName");
 const { value: imageName } = useField("imageName");
+const { value: userName } = useField("userName");
 ////////////////////////////////////
 function onInvalidSubmit({ errors }) {
   const error = Object.values(errors)
@@ -74,7 +74,6 @@ const handleChangeAccount = () => {
 ///////////////////////////////
 const handleProfile = (event) => {
   if (event.target.files && event.target.files[0]) {
-    state.clientProfile = '';
     var reader = new FileReader();
     reader.onload = function (e) {
       state.clientProfile = e.target.result
@@ -84,12 +83,12 @@ const handleProfile = (event) => {
   }
 }
 ////////////////////////////////
-const handleConvertProfileForUpload = async (image) => {
+const handleConvertProfileForUpload = (file) => {
   const reader = new FileReader();
-  reader.readAsArrayBuffer(image);
+  reader.readAsArrayBuffer(file);
   const formData = new FormData();
   reader.onload = () => {
-    formData.append('file', new Blob([reader.result], { type: image.type }), image.name);
+    formData.append('file', new Blob([reader.result], { type: file.type }), file.name);
     requestUploadProfile(formData)
   };
 }
