@@ -12,7 +12,10 @@ const toast = useToast();
 const state = reactive({
   categories: false,
   showList: true,
-  categorySelected: {}
+  categorySelected: {
+    data: [],
+    requestLoading: false
+  }
 })
 ////////////////////////////////
 onMounted(() => {
@@ -26,23 +29,25 @@ onMounted(() => {
 // ////////////////////////////
 const requestGetCategoryList = () => {
   state.categories = false
-  setTimeout(() => {
     categoryApi.get()
       .then((response) => {
         state.categories = response.data
-        state.categorySelected = {}
         state.showList = true
+        state.categorySelected = {
+          data: [],
+          requestLoading: false
+        }
       }).catch(() => {
         toast.error('لیست دسته بندی ها دریاف نشد')
+        state.categories = []
       })
-  }, 1000);
 }
-/////////////////////////
+///////////////////////////////////////////
 const handleCategorySelect = (category) => {
-  state.categorySelected = category;
+  state.categorySelected.data = category;
   state.showList = false
 }
-///////////////////////
+//////////////////////////////////////////
 const requestDeleteCategory = (categoryId) => {
   categoryApi.delete(categoryId)
     .then(() => {
@@ -51,6 +56,28 @@ const requestDeleteCategory = (categoryId) => {
     }).catch(() => {
       toast.error('دسته بندی مورد نظر حذف نشد')
     })
+}
+//////////////////////////////////////
+const requestNewCategory = (category) => {
+  state.categorySelected.requestLoading = true
+  categoryApi.new(category)
+    .then(() => {
+      requestGetCategoryList()
+      toast.success('با موفقیت افزوده شد');
+    })
+    .catch(() => { toast.error('دسته بندی اضافه نشد') })
+    .finally(() => { state.categorySelected.requestLoading = false })
+}
+//////////////////////////
+const requestEditCategory = (category) => {
+  state.categorySelected.requestLoading = true
+  categoryApi.edit(category)
+    .then(() => {
+      requestGetCategoryList()
+      toast.success('با موفقیت تغییر یافت');
+    })
+    .catch(() => { toast.error('دسته بندی تغییر نکرد') })
+    .finally(() => { state.categorySelected.requestLoading = false })
 }
 </script>
 <template>
@@ -75,20 +102,13 @@ const requestDeleteCategory = (categoryId) => {
       </div>
     </transition-slide>
     <!-- ///////////////////////// -->
-    <transition-scale group class="main-categories" :class="{ 'bg-white': !state.showList }">
+    <transition-slide group class="main-categories" :class="{ 'bg-white': !state.showList }">
       <!-- /////////////////////////////// -->
-      <div v-if="state.showList" class="relative w-full mt-4 max-w-[365px] min-w-[200px] justify-center items-center">
-        <input :disabled="!state.categories.length || !state.categories"
-          :class="{ 'hover:cursor-not-allowed': !state.categories.length || !state.categories }"
-          class="input bg-white m-0 dark:bg-[#151521] text" type="text" placeholder="عنوان محصول را وارد کنید">
-        <i :class="{ 'hidden': !state.categories.length || !state.categories }"
-          class="fa-duotone text fa-magnifying-glass text-xl absolute left-5 top-3 bottom-0 cursor-pointer hover:text-blue-500 transition-all"></i>
-      </div>
-      <!-- /////////////////////////////// -->
-      <List @DeleteCategory="requestDeleteCategory" @categorySelect="handleCategorySelect" v-if="state.showList"
+      <List v-if="state.showList" @DeleteCategory="requestDeleteCategory" @categorySelect="handleCategorySelect"
         :categories="state.categories" />
-      <NewOrEdit :category="state.categorySelected" @finishNewOrEditCategory="requestGetCategoryList" v-else />
+      <NewOrEdit v-else :category="state.categorySelected" @editeCategory="requestEditCategory"
+        @newCategory="requestNewCategory" />
       <!-- /////////////////////////////// -->
-    </transition-scale>
+    </transition-slide>
   </div>
 </template>

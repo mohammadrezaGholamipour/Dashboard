@@ -33,6 +33,9 @@ HttClient.interceptors.response.use(
   },
   ////////////////////
   (error) => {
+    if (error.code === "ERR_NETWORK") {
+      console.log('اینترنت شما قطع میباشد');
+    }
     if (error && error.response) {
       switch (error.response.status) {
         case 400:

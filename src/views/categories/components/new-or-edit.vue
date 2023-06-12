@@ -1,19 +1,18 @@
 <script setup>
 import { useForm, useField } from "vee-validate";
 import { useToast } from "vue-toastification";
-import categoryApi from '@/api/category';
-import uploaderApi from '@/api/upload';
 import { onMounted, reactive } from "vue";
+import uploaderApi from '@/api/upload';
 import * as yup from "yup";
 ///////////////////////////
-const emit = defineEmits(['finishNewOrEditCategory'])
+const emit = defineEmits(['editeCategory', 'newCategory'])
 const props = defineProps(['category'])
 const toast = useToast();
 /////////////////////////
 onMounted(() => {
-  categoryTitle.value = props.category?.categoryTitle;
-  imageName.value = props.category?.imageName;
-  priority.value = props.category?.priority;
+  categoryTitle.value = props.category.data?.categoryTitle;
+  imageName.value = props.category.data?.imageName;
+  priority.value = props.category.data?.priority;
 })
 /////////////////////////
 const state = reactive({
@@ -50,13 +49,13 @@ const handleChangeOrNewCategory = () => {
   clearTimeout(state.timer)
   state.timer = setTimeout(
     handleSubmit((values) => {
-      if (props.category?.categoryId) {
-        props.category.categoryTitle = categoryTitle.value
-        props.category.imageName = imageName.value
-        props.category.priority = priority.value
-        requestEditCategory(props.category)
+      if (props.category.data?.categoryId) {
+        props.category.data.categoryTitle = categoryTitle.value
+        props.category.data.imageName = imageName.value
+        props.category.data.priority = priority.value
+        emit('editeCategory', props.category.data)
       } else {
-        requestNewCategory(values)
+        emit('newCategory', values)
       }
     }, onInvalidSubmit), 1000);
 }
@@ -95,20 +94,16 @@ const requestUploadProfile = (formData) => {
     })
 }
 //////////////////////////
-const requestNewCategory = (category) => {
-  state.loading = true
-  categoryApi.new(category)
-    .then(() => { emit('finishNewOrEditCategory', toast.success('با موفقیت افزوده شد')) })
-    .catch(() => { toast.error('دسته بندی اضافه نشد') })
-    .finally(() => { state.loading = false })
-}
-//////////////////////////
-const requestEditCategory = (category) => {
-  state.loading = true
-  categoryApi.edit(category)
-    .then(() => { emit('finishNewOrEditCategory'), toast.success('با موفقیت تغییر یافت') })
-    .catch(() => { toast.error('دسته بندی تغییر نکرد') })
-    .finally(() => { state.loading = false })
+const handleResetInputs = () => {
+  if (props.category.data?.categoryId) {
+    categoryTitle.value = props.category.data.categoryTitle;
+    imageName.value = props.category.data.imageName;
+    priority.value = props.category.data.priority;
+  } else {
+    categoryTitle.value = '';
+    imageName.value = '';
+    priority.value = '';
+  }
 }
 </script>
 <template>
@@ -141,14 +136,15 @@ const requestEditCategory = (category) => {
       <!-- ////////////////////////////// -->
     </div>
     <div class="w-full flex justify-end items-center gap-5">
-      <button @click="handleChangeOrNewCategory" :disabled="state.loading"
-        :class="!state.loading ? 'btn-primary' : '!cursor-not-allowed btn-gray bg-slate-500 text-white'">
+      <button @click="handleChangeOrNewCategory" :disabled="state.loading || props.category.requestLoading"
+        :class="!state.loading && !props.category.requestLoading ? 'btn-primary' : '!cursor-not-allowed btn-gray bg-slate-500 text-white'">
         <transition-slide group>
-          <i v-if="state.loading" class="fa-duotone fa-loader animate-spin transition-all duration-300"></i>
+          <i v-if="state.loading && props.category.requestLoading"
+            class="fa-duotone fa-loader animate-spin transition-all duration-300"></i>
           <p v-else>تایید</p>
         </transition-slide>
       </button>
-      <button class="btn-gray">بازنشانی</button>
+      <button @click="handleResetInputs" class="btn-gray">بازنشانی</button>
     </div>
   </div>
 </template>
