@@ -7,23 +7,18 @@ import { useRouter } from "vue-router";
 import uploaderApi from '@/api/upload';
 import acoountApi from '@/api/acoount';
 import * as yup from "yup";
-//////////////////////////////////////
+/////////////////////////////////
 const pinia = useDashboardStore()
 const router = useRouter()
 const toast = useToast();
 ////////////////////////
 onMounted(() => {
-  const breadCrumb = [
-    { name: 'صفحه اصلی', link: '/' },
-    { name: ' تنظیمات حساب کاربری', link: '/account-setting' }
-  ];
-  pinia.handleBreadCrumb(breadCrumb);
-  ////////////////////////////////////////////////////
   state.userMobileNumber = pinia.getAccountInfo?.userMobileNumber;
   imageName.value = pinia.getAccountInfo?.imageAddress;
   userFamily.value = pinia.getAccountInfo?.userFamily;
   userName.value = pinia.getAccountInfo?.userName;
 })
+//////////////////////////////////////
 watch(() => pinia.getAccountInfo, (value) => {
   state.userMobileNumber = value?.userMobileNumber;
   imageName.value = value?.imageAddress;
@@ -31,7 +26,7 @@ watch(() => pinia.getAccountInfo, (value) => {
   userName.value = value?.userName;
   state.clientProfile = '';
 })
-//////////////////////////////
+/////////////////////////
 const state = reactive({
   userMobileNumber: null,
   loading: false,
@@ -52,13 +47,13 @@ const state = reactive({
       .nullable("لطفا پروفایل خود را بارگزاری کنید")
   }),
 })
-//////////////////////
+///////////////////////////////////////////////////////////////////
 const { handleSubmit } = useForm({ validationSchema: state.schema });
-///////////////////////////////
+/////////////////////////////////////////////////
 const { value: userFamily } = useField("userFamily");
 const { value: imageName } = useField("imageName");
 const { value: userName } = useField("userName");
-////////////////////////////////////
+/////////////////////////////////////
 function onInvalidSubmit({ errors }) {
   const error = Object.values(errors)
   toast.error(error[0])
@@ -71,7 +66,7 @@ const handleChangeAccount = () => {
       requestEditeAccount(values)
     }, onInvalidSubmit), 1000);
 }
-///////////////////////////////
+//////////////////////////////////
 const handleProfile = (event) => {
   if (event.target.files && event.target.files[0]) {
     var reader = new FileReader();
@@ -82,7 +77,7 @@ const handleProfile = (event) => {
     handleConvertProfileForUpload(event.target.files[0])
   }
 }
-////////////////////////////////
+////////////////////////////////////////////////
 const handleConvertProfileForUpload = (file) => {
   const reader = new FileReader();
   reader.readAsArrayBuffer(file);
@@ -92,7 +87,7 @@ const handleConvertProfileForUpload = (file) => {
     requestUploadProfile(formData)
   };
 }
-///////////////////////////////
+///////////////////////////////////////////
 const requestUploadProfile = (formData) => {
   state.loading = true;
   uploaderApi.profile(formData)
@@ -106,7 +101,7 @@ const requestUploadProfile = (formData) => {
       state.loading = false;
     })
 }
-///////////////////////////////
+//////////////////////////////////////
 const requestEditeAccount = (user) => {
   state.loading = true;
   acoountApi.edit(user)
