@@ -29,18 +29,18 @@ onMounted(() => {
 // ////////////////////////////
 const requestGetCategoryList = () => {
   state.categories = false
-    categoryApi.get()
-      .then((response) => {
-        state.categories = response.data
-        state.showList = true
-        state.categorySelected = {
-          data: [],
-          requestLoading: false
-        }
-      }).catch(() => {
-        toast.error('لیست دسته بندی ها دریاف نشد')
-        state.categories = []
-      })
+  categoryApi.get()
+    .then((response) => {
+      state.categories = response.data
+      state.showList = true
+      state.categorySelected = {
+        data: [],
+        requestLoading: false
+      }
+    }).catch(() => {
+      toast.error('لیست دسته بندی ها دریاف نشد')
+      state.categories = []
+    })
 }
 ///////////////////////////////////////////
 const handleCategorySelect = (category) => {

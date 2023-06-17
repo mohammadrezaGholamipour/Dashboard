@@ -155,7 +155,7 @@ const state = reactive({
 })
 </script>
 <template>
-  <div class="flex gap-y-2 w-full flex-col justify-start items-start">
+  <div class="parent-chart-bar">
     <p class="title">گزارش میزان فروش به صورت نمودار</p>
     <BarChart class="w-full" :chartData="state.data" :options="state.options" />
   </div>

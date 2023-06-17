@@ -12,7 +12,7 @@ const state = reactive({
 ///////////////////////////////
 const handleDeleteCategory = (category) => {
   state.category = category;
-  state.statusDialog = true
+  state.statusDialog = true;
 }
 //////////////////////////////////
 const handleStatusDialog = (status) => {

@@ -390,6 +390,32 @@
   .uploader-image {
     @apply rounded-md relative border-dashed border-2 cursor-pointer  dark:bg-[#151521] border-[#8FD6FE] dark:border-white p-4 bg-[#F1FAFF];
   }
+  /* best-product */
+  .parent-best-product {
+    @apply flex flex-col rounded-md p-4 flex-grow text dark:bg-[#1e1e2d] bg-white shadow-sm;
+    max-width: 500px;
+  }
+  .best-tab {
+    @apply flex items-center gap-x-1 p-2 cursor-pointer rounded-md;
+  }
+  .text-no-wrap-best-product-right {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+    overflow: hidden;
+    width: 200px;
+  }
+  .text-no-wrap-best-product-left {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    width: 70px;
+  }
+  /* chart-bar */
+  .parent-chart-bar {
+    @apply flex gap-y-2 bg-white flex-grow dark:bg-[#1e1e2d] p-5 rounded-md shadow-sm flex-col justify-start items-start;
+  }
   /* mediaQuery */
   @media only screen and (max-width: 999px) {
     .parent-login {
