@@ -24,7 +24,7 @@ if (AuthService.getTokenUser()) {
             <component :is="Component" />
           </transition-slide>
         </router-view>
-        <Footer />
+        <!-- <Footer /> -->
       </div>
     </main>
     <!-- //////////////////////// -->

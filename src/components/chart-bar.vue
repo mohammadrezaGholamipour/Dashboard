@@ -156,7 +156,7 @@ const state = reactive({
 </script>
 <template>
   <div class="parent-chart-bar">
-    <p class="title">گزارش میزان فروش به صورت نمودار</p>
+    <p class="title p-5">گزارش میزان فروش به صورت نمودار</p>
     <BarChart class="w-full" :chartData="state.data" :options="state.options" />
   </div>
 </template>
