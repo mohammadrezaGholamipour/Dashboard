@@ -371,7 +371,7 @@
     @apply flex flex-col w-full justify-start gap-y-3 items-start;
   }
   .header-categories {
-    @apply w-full flex items-center px-3 justify-between;
+    @apply w-full flex items-center justify-between;
   }
   .main-categories {
     @apply flex justify-start gap-y-7 p-3 items-start flex-col w-full dark:bg-[#1e1e2d] rounded-md;

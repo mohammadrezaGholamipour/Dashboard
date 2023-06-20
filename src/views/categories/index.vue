@@ -102,7 +102,7 @@ const requestEditCategory = (category) => {
       </div>
     </transition-slide>
     <!-- ///////////////////////// -->
-    <transition-slide group class="main-categories" :class="{ 'bg-white': !state.showList }">
+    <transition-slide group class="main-categories" :class="{ 'bg-white mt-3': !state.showList }">
       <!-- /////////////////////////////// -->
       <List v-if="state.showList" @DeleteCategory="requestDeleteCategory" @categorySelect="handleCategorySelect"
         :categories="state.categories" />
