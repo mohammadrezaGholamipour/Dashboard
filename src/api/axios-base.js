@@ -1,6 +1,8 @@
-﻿import AuthService from '@/utils/AuthService'
+﻿import { useToast } from "vue-toastification";
+import AuthService from '@/utils/AuthService'
 import axios from 'axios';
-////////////////////////////////////
+const toast = useToast();
+////////////////////////////////
 const HttClient = axios.create({
   baseURL: 'http://fadakmedia.hamrahefadak.ir/api/',
   timeout: 30000,
@@ -10,7 +12,7 @@ const HttClient = axios.create({
     'Access-Control-Allow-Origin': '*',
   },
 });
-/////////////////////////////////
+///////////////////////////////////
 HttClient.interceptors.request.use(
   (config) => {
     config.headers['authorization'] = `Bearer ${AuthService.getTokenUser()}`;
@@ -20,7 +22,7 @@ HttClient.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-//////////////////////////
+///////////////////////////////////
 HttClient.interceptors.response.use(
   (response) => {
     if (
@@ -34,7 +36,7 @@ HttClient.interceptors.response.use(
   ////////////////////
   (error) => {
     if (error.code === "ERR_NETWORK") {
-      console.log('اینترنت شما قطع میباشد');
+     
     }
     if (error && error.response) {
       switch (error.response.status) {

@@ -3,12 +3,16 @@ import { onClickOutside, useWindowSize } from '@vueuse/core'
 import FullAccount from './components/full-account.vue';
 import { useDashboardStore } from '@/store/pinia';
 import Menu from './components/menu.vue';
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 ////////////////////////////////
 const sideBarContentStatus = ref(false)
 const { width } = useWindowSize();
 const pinia = useDashboardStore();
 const sideBar = ref(null)
+///////////////////////
+onMounted(() => {
+  pinia.requestGetAccountInfo()
+})
 ///////////////////////
 onClickOutside(sideBar, (event) => {
   const dialog = document.getElementsByClassName('dialog-back-ground')

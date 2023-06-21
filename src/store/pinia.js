@@ -23,7 +23,9 @@ export const useDashboardStore = defineStore('pinia', {
         .then((response) => {
           this.accountInfo = response.data
         })
-        .catch((error) => { console.log(error); })
+        .catch((error) => {
+          console.log(error);
+        })
     },
     requestAccountLogOut() {
       accountApi.logOut()

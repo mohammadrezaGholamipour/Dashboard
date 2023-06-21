@@ -10,12 +10,12 @@ const pinia = useDashboardStore()
 const toast = useToast();
 ////////////////////////////////
 const state = reactive({
+  categorySelected: {
+    requestLoading: false,
+    data: [],
+  },
   categories: false,
   showList: true,
-  categorySelected: {
-    data: [],
-    requestLoading: false
-  }
 })
 ////////////////////////////////
 onMounted(() => {
@@ -34,12 +34,12 @@ const requestGetCategoryList = () => {
       state.categories = response.data
       state.showList = true
       state.categorySelected = {
+        requestLoading: false,
         data: [],
-        requestLoading: false
       }
     }).catch(() => {
-      toast.error('لیست دسته بندی ها دریاف نشد')
-      state.categories = []
+      toast.error('لیست دسته بندی ها دریافت نشد');
+      state.categories = [];
     })
 }
 ///////////////////////////////////////////
