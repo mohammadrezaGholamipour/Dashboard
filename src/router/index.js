@@ -25,9 +25,13 @@ const router = createRouter({
           component: accountSetting,
         },
         {
-          path: '/categories',
+          path: '/categories/:section/:id?',
           name: 'categories',
           component: categories,
+          props: (route) => ({
+            section: route.params.section,
+            id: route.params.id
+          })
         }
       ]
     },

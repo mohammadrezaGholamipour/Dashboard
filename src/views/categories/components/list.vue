@@ -34,8 +34,8 @@ const handleStatusDialog = (status) => {
       </div>
       <div class="flex w-full flex-wrap justify-center items-center gap-5">
         <div v-for="(item, index) in props.categories" :key="index" class="category">
-          <img @error="$event.target.src = 'src/assets/images/category.png'" width="66" height="66" :src="item.imageName"
-            class="rounded-md">
+          <img @error="$event.target.src = `/src/assets/images/category.png`" width="66" height="66"
+            :src="item.imageName" class="rounded-md">
           <p class="text-no-wrap-category">{{ item.categoryTitle }}</p>
           <div class="flex w-full justify-center items-center gap-x-5">
             <i @click="emit('categorySelect', item)"

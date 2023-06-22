@@ -26,7 +26,7 @@ const handleLogOut = () => {
 <template>
   <div v-if="props.accountInfo" class="account-info">
     <img width="50" class="rounded-md" :src="props.accountInfo.imageAddress"
-      @error="$event.target.src = 'src/assets/images/account.png'">
+      @error="$event.target.src = '/src/assets/images/account.png'">
     <div class="flex justify-between w-full items-center mr-4">
       <div class="flex flex-col gap-1">
         <p style="font-weight: 600;font-size: 1.075rem">{{ props.accountInfo.userName }}</p>
@@ -43,7 +43,7 @@ const handleLogOut = () => {
       <div ref="popupElement" @click="state.popup = false" v-if="state.popup" class="account-popup">
         <div class="p-3 gap-x-3 w-full flex items-center">
           <img width="50" class="rounded-md" :src="props.accountInfo.imageAddress"
-            @error="$event.target.src = 'src/assets/images/account.png'">
+            @error="$event.target.src = '/src/assets/images/account.png'">
           <div class="flex flex-col gap-y-2 mr-1">
             <div class="flex items-center">
               <p class="text">{{ props.accountInfo.userName }}</p>

@@ -2,31 +2,43 @@
 import NewOrEdit from './components/new-or-edit.vue';
 import { useDashboardStore } from '@/store/pinia';
 import { useToast } from "vue-toastification";
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, watch } from 'vue';
 import categoryApi from '@/api/category';
 import List from './components/list.vue';
+import { useRouter } from 'vue-router';
 /////////////////////////////////
 const pinia = useDashboardStore()
+const router = useRouter();
 const toast = useToast();
 ////////////////////////////////
 const state = reactive({
   categorySelected: {
     requestLoading: false,
-    data: [],
+    data: {},
   },
   categories: false,
   showList: true,
 })
-////////////////////////////////
+////////////////////////////
 onMounted(() => {
   const breadCrumb = [
     { name: 'صفحه اصلی', link: '/' },
-    { name: 'دسته بندی ها', link: '/categories' },
+    { name: 'دسته بندی ها', link: '/categories/list' },
   ]
-  pinia.handleBreadCrumb(breadCrumb)
-  requestGetCategoryList()
+  pinia.handleBreadCrumb(breadCrumb);
+  requestGetCategoryList();
 })
-// ////////////////////////////
+//////////////////////////////
+watch(() => state.showList, (value) => {
+  if (value) {
+    router.push({ name: 'categories', params: { section: 'list' } })
+  } else if (state.categorySelected.data?.categoryId) {
+    router.push({ name: 'categories', params: { section: 'edit', id: state.categorySelected.data.categoryId } })
+  } else {
+    router.push({ name: 'categories', params: { section: 'new' } })
+  }
+})
+//////////////////////////////
 const requestGetCategoryList = () => {
   state.categories = false
   categoryApi.get()
@@ -35,7 +47,7 @@ const requestGetCategoryList = () => {
       state.showList = true
       state.categorySelected = {
         requestLoading: false,
-        data: [],
+        data: {},
       }
     }).catch(() => {
       toast.error('لیست دسته بندی ها دریافت نشد');

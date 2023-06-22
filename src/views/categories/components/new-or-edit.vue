@@ -122,7 +122,7 @@ const handleResetInputs = () => {
         <p>تصویر دسته بندی :</p>
         <label class="uploader-image">
           <!-- ///////////////////// -->
-          <img v-if="imageName" @error="$event.target.src = 'src/assets/images/category.png'" :src="imageName" width="75"
+          <img v-if="imageName" @error="$event.target.src = '/src/assets/images/category.png'" :src="imageName" width="75"
             class="rounded-md" />
           <img v-else src="@/assets/images/image.png" width="75">
           <input class="hidden" type="file" @change="handleCategoriesImage" />

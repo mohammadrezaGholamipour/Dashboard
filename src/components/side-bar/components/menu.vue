@@ -6,7 +6,7 @@ const route = useRoute()
 ////////////////////////
 const state = reactive({
   menuList: [
-    { name: 'دسته بندی ها', route: '/categories' }
+    { name: 'دسته بندی ها', route: '/categories/list', status: true, },
   ]
 })
 </script>
