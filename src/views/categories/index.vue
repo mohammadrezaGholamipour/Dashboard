@@ -1,8 +1,8 @@
 <script setup>
 import NewOrEdit from './components/new-or-edit.vue';
 import { useDashboardStore } from '@/store/pinia';
-import { useToast } from "vue-toastification";
 import { onMounted, reactive, watch } from 'vue';
+import { useToast } from "vue-toastification";
 import categoryApi from '@/api/category';
 import List from './components/list.vue';
 import { useRouter } from 'vue-router';

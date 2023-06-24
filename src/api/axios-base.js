@@ -1,7 +1,5 @@
-﻿import { useToast } from "vue-toastification";
-import AuthService from '@/utils/AuthService'
+﻿import AuthService from '@/utils/AuthService'
 import axios from 'axios';
-const toast = useToast();
 ////////////////////////////////
 const HttClient = axios.create({
   baseURL: 'http://fadakmedia.hamrahefadak.ir/api/',

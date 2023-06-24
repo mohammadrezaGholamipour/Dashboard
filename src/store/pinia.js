@@ -1,7 +1,7 @@
 import AuthService from "@/utils/AuthService";
 import accountApi from '@/api/acoount'
 import { defineStore } from 'pinia'
-//////////////////////////////////
+//////////////////////////
 export const useDashboardStore = defineStore('pinia', {
   state: () => ({
     sideBarStatus: false,
@@ -10,7 +10,7 @@ export const useDashboardStore = defineStore('pinia', {
       { name: 'صفحه اصلی', link: '/' }
     ]
   }),
-  ///////////////////
+  /////////////////////////
   actions: {
     handleSideBarStatus() {
       this.sideBarStatus = !this.sideBarStatus

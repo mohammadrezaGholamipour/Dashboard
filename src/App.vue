@@ -1,6 +1,6 @@
 <script setup>
-import Dialog from '@/components/dialog.vue'
-import { useOnline } from '@vueuse/core'
+import Dialog from '@/components/dialog.vue';
+import { useOnline } from '@vueuse/core';
 import { watch } from 'vue';
 ///////////////////////////
 const online = useOnline();
@@ -9,7 +9,8 @@ watch(() => online.value, (status) => {
   if (status) {
     window.location.reload()
   }
-})
+});
+/////////////////////////////
 </script>
 <template>
   <router-view v-slot="{ Component }">
