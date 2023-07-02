@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@morev/vue-transitions": "^2.3.4",
-    "@programic/vue3-tooltip": "^1.0.0",
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
     "chart.js": "^3.9.1",
