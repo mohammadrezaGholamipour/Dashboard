@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import competitions from '@/views/competitions/index.vue';
 import accountSetting from '@/views/account-setting.vue';
 import DefaultLayout from '@/layout/default-layout.vue';
 import categories from '@/views/categories/index.vue';
 import AuthService from '@/utils/AuthService';
-import NotFound from '@/views/not-found.vue';
+import notFound from '@/views/not-found.vue';
 import login from '@/views/login.vue';
 import home from '@/views/home.vue';
 ////////////////////////////
@@ -26,14 +27,30 @@ const router = createRouter({
           component: accountSetting,
         },
         {
-          path: '/categories/:section/:id?',
+          path: '/categories/:section(list|edit)/:id?',
           name: 'categories',
           component: categories,
-          props: (route) => ({
-            section: route.params.section,
-            id: route.params.id
-          })
-        }
+          /////////////////////////////////
+          beforeEnter: (to, from, next) => {
+            const section = to.params.section;
+            const id = to.params.id;
+            if (section === 'edit' && !id) {
+              next({ name: 'categories', params: { section: 'list' } });
+            } else {
+              next();
+            }
+          }
+          ////////////////////////////
+        },
+        {
+          path: '/categories',
+          redirect: '/categories/list'
+        },
+        {
+          path: '/competitions',
+          name: 'competitions',
+          component: competitions,
+        },
       ]
     },
     {
@@ -42,9 +59,9 @@ const router = createRouter({
       component: login,
     },
     {
-      path: '/:catchAll(.*)', // this will match any URL that doesn't match any other route
-      name: 'NotFound',
-      component: NotFound
+      path: '/:catchAll(.*)',
+      name: 'notFound',
+      component: notFound
     }
 
   ]

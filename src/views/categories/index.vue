@@ -23,9 +23,10 @@ const state = reactive({
 onMounted(() => {
   const breadCrumb = [
     { name: 'صفحه اصلی', link: '/' },
-    { name: 'دسته بندی ها', link: '/categories/list' },
+    { name: 'لیست دسته بندی ها', link: '/categories/list' },
   ]
   pinia.handleBreadCrumb(breadCrumb);
+  //////////////////////
   requestGetCategoryList();
 })
 //////////////////////////////

@@ -317,7 +317,7 @@
     z-index: -1;
   }
   .menu-item {
-    @apply w-full flex justify-between items-center py-[20px] px-[17px] text-[#B6B9C8] hover:text-white cursor-pointer;
+    @apply w-full flex justify-between items-center py-[10px] px-[17px] text-[#B6B9C8] hover:text-white cursor-pointer;
     transition: color 0.2s ease;
   }
   /* //////////footer//////////// */
@@ -421,6 +421,16 @@
     min-height: 476px;
     min-width: 370px;
     width: 70%;
+  }
+  /* competitions */
+  .parent-competitions {
+    @apply flex flex-col w-full justify-start gap-y-4 items-center;
+  }
+  .header-competitions {
+    @apply w-full flex items-center justify-between;
+  }
+  .main-competitions {
+    @apply w-full flex items-center justify-center;
   }
   /* mediaQuery */
   @media only screen and (max-width: 1673px) {
