@@ -108,17 +108,15 @@
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex w-full p-5 flex-col bg-white dark:bg-[#1e1e2d] dark:text-white rounded-md overflow-hidden shadow-md;
+    @apply flex w-full p-5 flex-col bg-white dark:bg-[#1e1e2d] gap-y-5 dark:text-white rounded-md overflow-hidden shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
     @apply flex justify-between w-full items-center;
   }
   .table-system {
-    border-collapse: collapse;
     text-align: center;
-    margin-top: 20px;
-    margin-top: 20px;
+    height: 100%;
     width: 100%;
   }
   .table-system tbody tr {
@@ -245,7 +243,7 @@
     width: 100%;
   }
   .route {
-    @apply p-10 pb-2 w-full h-full flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-between items-start overflow-hidden;
+    @apply p-10 w-full h-full flex-col bg-[#f9f9f9] dark:bg-[#151521] flex justify-start items-start overflow-hidden;
   }
   /* header */
   .header-logo {
@@ -261,7 +259,7 @@
   }
   .tools {
     @apply w-full flex justify-between items-center;
-    padding: 0 30px;
+    padding: 0 40px;
     height: 74px;
   }
   .bread-crumb {
@@ -369,13 +367,13 @@
   }
   /* categories */
   .parent-categories {
-    @apply flex flex-col w-full justify-start gap-y-3 items-start;
+    @apply flex flex-col h-full w-full justify-start gap-y-3 items-start;
   }
   .header-categories {
     @apply w-full flex items-center justify-between;
   }
   .main-categories {
-    @apply flex justify-start gap-y-7 p-3 items-start flex-col w-full dark:bg-[#1e1e2d] rounded-md;
+    @apply flex justify-start overflow-scroll gap-y-7 p-3 items-start flex-col w-full dark:bg-[#1e1e2d] rounded-md;
   }
   .category {
     @apply flex cursor-pointer hover:shadow-md transition-all duration-500  flex-col gap-y-3 h-[182px] justify-center p-5 items-center rounded-lg shadow-sm bg-white dark:bg-[#151521] text;
@@ -424,13 +422,13 @@
   }
   /* competitions */
   .parent-competitions {
-    @apply flex flex-col w-full justify-start gap-y-4 items-center;
+    @apply flex flex-col h-full w-full justify-start gap-y-4 items-center;
   }
   .header-competitions {
     @apply w-full flex items-center justify-between;
   }
   .main-competitions {
-    @apply w-full flex items-center justify-center;
+    @apply w-full flex items-start justify-center;
   }
   /* mediaQuery */
   @media only screen and (max-width: 1673px) {
@@ -458,10 +456,13 @@
       right: 0;
       top: 0;
     }
+    .tools {
+      padding: 20px;
+    }
   }
   @media only screen and (max-width: 500px) {
     .route {
-      @apply p-2 pt-5 gap-y-0;
+      @apply p-3;
     }
     .category {
       @apply w-full;
