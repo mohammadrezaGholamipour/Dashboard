@@ -26,7 +26,6 @@ onMounted(() => {
     { name: 'لیست دسته بندی ها', link: '/categories/list' },
   ]
   pinia.handleBreadCrumb(breadCrumb);
-  //////////////////////
   requestGetCategoryList();
 })
 //////////////////////////////
@@ -66,8 +65,8 @@ const requestDeleteCategory = (categoryId) => {
     .then(() => {
       requestGetCategoryList()
       toast.success('دسته بندی مورد نظر با موفقیت حذف شد')
-    }).catch(() => {
-      toast.error('دسته بندی مورد نظر حذف نشد')
+    }).catch((error) => {
+      toast.error(error?.response?.data?.message)
     })
 }
 //////////////////////////////////////
@@ -97,22 +96,24 @@ const requestEditCategory = (category) => {
   <div class="parent-categories">
     <!-- /////////////////////// -->
     <transition-slide group class="w-full flex">
-      <div class="header-categories" v-if="state.showList">
-        <p class="title">دسته بندی ها</p>
-        <button @click="state.showList = false" class="btn-primary flex items-center gap-x-3 p-2 px-5 justify-center">
-          <p>افزودن</p>
-          <i class="fa-duotone fa-circle-plus text-xl"></i>
-        </button>
-      </div>
-      <!-- /////////////////////// -->
-      <div class="header-categories" v-else>
-        <p class="title">{{ state.categorySelected?.categoryId ? 'تغییر دسته بندی' : 'افزودن دسته بندی' }}</p>
-        <button @click="state.showList = true, state.categorySelected = {}"
-          class="btn-red flex items-center gap-x-3 p-2 px-5 justify-center">
-          <p>بازگشت</p>
-          <i class="fa-duotone fa-angles-left text-xl"></i>
-        </button>
-      </div>
+      <template v-if="state.categories.length">
+        <div class="header-categories" v-if="state.showList">
+          <p class="title">دسته بندی ها</p>
+          <button @click="state.showList = false" class="btn-primary flex items-center gap-x-3 p-2 px-5 justify-center">
+            <p>افزودن</p>
+            <i class="fa-duotone fa-circle-plus text-xl"></i>
+          </button>
+        </div>
+        <!-- /////////////////////// -->
+        <div class="header-categories" v-else>
+          <p class="title">{{ state.categorySelected?.categoryId ? 'تغییر دسته بندی' : 'افزودن دسته بندی' }}</p>
+          <button @click="state.showList = true, state.categorySelected = {}"
+            class="btn-red flex items-center gap-x-3 p-2 px-5 justify-center">
+            <p>بازگشت</p>
+            <i class="fa-duotone fa-angles-left text-xl"></i>
+          </button>
+        </div>
+      </template>
     </transition-slide>
     <!-- ///////////////////////// -->
     <transition-slide group class="main-categories" :class="{ 'bg-white mt-3': !state.showList }">
@@ -125,3 +126,6 @@ const requestEditCategory = (category) => {
     </transition-slide>
   </div>
 </template>
+<style>
+
+</style>

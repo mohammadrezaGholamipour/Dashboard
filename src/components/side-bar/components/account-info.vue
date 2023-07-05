@@ -40,7 +40,7 @@ const handleLogOut = () => {
     </div>
     <!-- ///////////////////////////////// -->
     <transition-slide>
-      <div ref="popupElement" @click="state.popup = false" v-if="state.popup" class="account-popup">
+      <div ref="popupElement" @click="state.popup = false" v-if="state.popup" class="account-popup z-[60]">
         <div class="p-3 gap-x-3 w-full flex items-center">
           <img width="50" class="rounded-md" :src="props.accountInfo.imageAddress"
             @error="$event.target.src = '/src/assets/images/account.png'">

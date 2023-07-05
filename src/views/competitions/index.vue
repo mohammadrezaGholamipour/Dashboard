@@ -26,22 +26,25 @@ const state = reactive({
 const requestGetCompetitions = () => {
   competitionsApi.get()
     .then((response) => {
-      state.competitions = response.data
-    }).catch((error) => {
+        state.competitions = response.data
+    }).catch(() => {
       toast.error('لیست مسابقات دریافت نشد')
+      state.competitions = []
     })
 }
 </script>
 <template>
   <div class="parent-competitions">
     <!-- ///////////////////////////// -->
-    <div class="header-competitions">
-      <p class="title">لیست مسابقات</p>
-      <button class="btn-primary flex items-center gap-x-3 p-2 px-5 justify-center">
-        <p>افزودن</p>
-        <i class="fa-duotone fa-circle-plus text-xl"></i>
-      </button>
-    </div>
+    <transition-slide class="w-full">
+      <div v-if="state.competitions.length" class="header-competitions">
+        <p class="title">لیست مسابقات</p>
+        <button v-if="state.competitions.length" class="btn-green flex items-center gap-x-3 p-2 px-5 justify-center">
+          <p>افزودن</p>
+          <i class="fa-duotone fa-circle-plus text-xl"></i>
+        </button>
+      </div>
+    </transition-slide>
     <!-- ///////////////////////////// -->
     <div class="main-competitions">
       <FullTable :competitions="state.competitions" />

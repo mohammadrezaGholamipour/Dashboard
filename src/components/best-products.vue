@@ -40,7 +40,7 @@ const handleChangeTabBestProduct = (type) => {
 <template>
   <div class="parent-best-product">
     <!-- ///////////////////////////////////// -->
-    <div class="w-full gap-x-5 flex items-center justify-between">
+    <div class="w-full gap-x-2 flex items-center justify-between">
       <div @click="handleChangeTabBestProduct(item.type)" v-for="(item, index) in state.bestTabs" :key="index"
         class="best-tab" :class="{ 'bg-slate-100 shadow-md animate-pulse dark:text-black': state.bestTabSelected === item.type }">
         <p>{{ item.name }}</p> <i :class="item.icon"></i>

@@ -108,13 +108,14 @@
     @apply text-red-400 font-bold my-2;
   }
   .parent-table-system {
-    @apply flex w-full p-5 flex-col bg-white dark:bg-[#1e1e2d] gap-y-5 dark:text-white rounded-md overflow-hidden shadow-md;
+    @apply flex w-full h-full z-[5] p-5 flex-col bg-white dark:bg-[#1e1e2d] gap-y-5 dark:text-white rounded-md overflow-hidden shadow-md;
     white-space: nowrap;
   }
   .header-table-system {
-    @apply flex justify-between w-full items-center;
+    @apply flex w-full flex-col justify-start items-start;
   }
   .table-system {
+    table-layout: fixed;
     text-align: center;
     height: 100%;
     width: 100%;
@@ -135,7 +136,7 @@
     padding: 13px;
   }
   .parent-table-mobile {
-    @apply flex flex-col justify-start gap-y-3 pb-3 items-center;
+    @apply flex w-full h-full flex-col justify-start gap-y-3 pb-3 items-center overflow-scroll;
   }
   .table-mobile {
     @apply flex justify-between items-center rounded-md shadow-md p-3 bg-white;
@@ -147,12 +148,13 @@
   }
   .table-mobile-col {
     @apply py-3;
-    text-overflow: ellipsis;
-    max-width: 150px;
-    overflow: hidden;
+    text-overflow: ellipsis !important;
+    text-align: center;
+    max-width: 200px;
+    overflow: hidden !important;
   }
   .parent-table-filter {
-    @apply w-full flex py-1  my-[10px] items-center justify-between gap-x-3;
+    @apply w-full flex py-1 my-[10px] items-center justify-between gap-x-3;
   }
   .parent-drop-down {
     @apply flex flex-col items-center justify-center text relative;
@@ -164,7 +166,7 @@
     @apply bg-white dark:bg-[#1e1e2d] cursor-pointer w-full rounded-md overflow-hidden flex justify-between items-center p-[13px];
   }
   .list-drop-down {
-    @apply bg-white dark:bg-[#1e1e2d] absolute top-14 w-full shadow-md overflow-hidden rounded-md z-10;
+    @apply bg-white dark:bg-[#1e1e2d] absolute top-14 w-full shadow-md overflow-hidden rounded-md z-[11];
   }
   .item-drop-down {
     @apply p-3 border-b border-solid cursor-pointer hover:bg-[#f9f9f9] transition-all hover:text-[#009ef7];
@@ -428,7 +430,7 @@
     @apply w-full flex items-center justify-between;
   }
   .main-competitions {
-    @apply w-full flex items-start justify-center;
+    @apply w-full overflow-hidden flex items-start justify-center;
   }
   /* mediaQuery */
   @media only screen and (max-width: 1673px) {
