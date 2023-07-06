@@ -33,7 +33,7 @@ watch(() => state.showList, (value) => {
   if (value) {
     router.push({ name: 'categories', params: { section: 'list' } })
   } else if (state.categorySelected.data?.categoryId) {
-    router.push({ name: 'categories', params: { section: 'edit', id: state.categorySelected.data.categoryId } })
+    router.push({ name: 'categories', params: { section: 'edit' } })
   } else {
     router.push({ name: 'categories', params: { section: 'new' } })
   }
@@ -126,6 +126,4 @@ const requestEditCategory = (category) => {
     </transition-slide>
   </div>
 </template>
-<style>
-
-</style>
+<style></style>

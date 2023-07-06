@@ -1,8 +1,10 @@
 <script setup>
+import Loading from '@/components/loading.vue';
 import { useWindowSize } from '@vueuse/core';
 import FilterTable from './filter-table.vue';
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 //////////////////////////////////
+const emit = defineEmits(['competitionsChangeStatus'])
 const props = defineProps(['competitions']);
 //////////////////////////////////
 const { width } = useWindowSize();
@@ -10,12 +12,17 @@ const { width } = useWindowSize();
 const state = reactive({
   filterStatus: false,
 });
+///////////////////////
+const handleChangeStatus = (id) => {
+  emit('competitionsChangeStatus', id)
+}
 </script>
 <template>
   <template v-if="width >= 999">
+    <Loading v-if="props.competitions.loading" />
     <div class="parent-table-system">
       <transition-slide>
-        <div v-if="props.competitions.length" class="header-table-system">
+        <div v-if="props.competitions.data.length" class="header-table-system">
           <div class="flex w-full justify-end items-center gap-x-3">
             <div class="relative w-full max-w-[365px] min-w-[200px] justify-center items-center">
               <input class="input-grey m-0" type="text" placeholder="عنوان محصول را وارد کنید">
@@ -33,7 +40,7 @@ const state = reactive({
       </transition-slide>
       <!-- ////////////////////////// -->
       <transition-slide group class="w-full h-full overflow-scroll">
-        <table v-if="props.competitions.length" class="table-system">
+        <table v-if="props.competitions.data.length" class="table-system">
           <thead class="sticky top-0 bg-[#009ef7] text-center z-10 text-white" style="border-radius: 20px;">
             <tr>
               <th class="w-[100px] rounded-r-md">
@@ -69,13 +76,19 @@ const state = reactive({
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in  props.competitions" :key="index">
+            <tr v-for="(item, index) in  props.competitions.data" :key="index">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.creatorUserName }}</td>
-              <td>{{ item.isActive }}</td>
+              <td>{{ item.title ? item.title : '-' }}</td>
+              <td>{{ item.creatorUserName ? item.title : '-' }}</td>
+              <td>
+                <label class="switch">
+                  <input @click="handleChangeStatus(item.matchId)" class="switch-input" :checked="item.isActive"
+                    type="checkbox">
+                  <span class="slider"></span>
+                </label>
+              </td>
               <td>اطلاعات بیشتر</td>
-              <td style="min-width: 152px;">
+              <td>
                 <i
                   class="fa-duotone fa-pen p-2 rounded-md bg-[#F9F9F9] dark:bg-[#2b2b40] shadow-sm text-[#A1A5B7] mx-1 hover:text-blue-500 text-xl cursor-pointer duration-300 transition-all"></i>
                 <i
@@ -86,14 +99,14 @@ const state = reactive({
             </tr>
           </tbody>
         </table>
-        <div v-else-if="props.competitions" class="flex relative flex-col items-center">
+        <div v-else-if="props.competitions.data" class="flex relative flex-col items-center">
           <p class="text text-xl absolute top-7 font-bold">لیست مسابقه ای یافت نشد</p>
           <img width="350" src="@/assets/images/not-found-data.jpg" />
         </div>
         <div v-else class="w-full h-full cursor-wait flex flex-col gap-y-2 justify-start items-center">
           <div class="w-full bg-slate-200 rounded-md animate-pulse h-[85px]"></div>
           <div
-            class="w-full  flex flex-col justify-start items-center gap-y-5 h-[500px] bg-slate-200 ounded-md animate-pulse rounded-md">
+            class="w-full flex flex-col justify-start items-center gap-y-5 h-[100vh] bg-slate-200 ounded-md animate-pulse rounded-md">
           </div>
         </div>
       </transition-slide>
@@ -103,8 +116,8 @@ const state = reactive({
   <!-- ///////////////////// -->
   <div v-else class="w-full h-full">
     <transition-slide group class="parent-table-mobile">
-      <template v-if="props.competitions.length">
-        <div v-for="(item, index) in props.competitions" :key="index" class="table-mobile">
+      <template v-if="props.competitions.data.length">
+        <div v-for="(item, index) in props.competitions.data" :key="index" class="table-mobile">
           <div class="table-mobile-row font-bold">
             <p class="table-mobile-col"> ردیف :</p>
             <p class="table-mobile-col"> شماره فاکتور :</p>
@@ -114,14 +127,20 @@ const state = reactive({
           </div>
           <div class="table-mobile-row">
             <p class="table-mobile-col">{{ index + 1 }}</p>
-            <p class="table-mobile-col">{{ item.title }}</p>
-            <p class="table-mobile-col">{{ item.creatorUserName }}</p>
-            <p class="table-mobile-col">{{ item.isActive }}</p>
+            <p class="table-mobile-col">{{ item.title ? item.title : '-' }}</p>
+            <p class="table-mobile-col">{{ item.creatorUserName ? item.title : '-' }}</p>
+            <p class="table-mobile-col">
+              <label class="switch">
+                <input @click="handleChangeStatus(item.matchId)" class="switch-input" :checked="item.isActive"
+                  type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </p>
             <p class="table-mobile-col">اطلاعات بیشتر</p>
           </div>
         </div>
       </template>
-      <div v-else-if="props.competitions" class="flex relative flex-col items-center">
+      <div v-else-if="props.competitions.data" class="flex relative flex-col items-center">
         <p class="text text-xl absolute top-7 font-bold">لیست مسابقه ای یافت نشد</p>
         <img width="350" src="@/assets/images/not-found-data.jpg" />
       </div>

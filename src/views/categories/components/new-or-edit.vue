@@ -139,7 +139,7 @@ const handleResetInputs = () => {
       <button @click="handleChangeOrNewCategory" :disabled="state.loading || props.category.requestLoading"
         :class="!state.loading && !props.category.requestLoading ? 'btn-primary' : '!cursor-not-allowed btn-gray bg-slate-500 text-white'">
         <transition-slide group>
-          <i v-if="state.loading && props.category.requestLoading"
+          <i v-if="state.loading || props.category.requestLoading"
             class="fa-duotone fa-loader animate-spin transition-all duration-300"></i>
           <p v-else>تایید</p>
         </transition-slide>

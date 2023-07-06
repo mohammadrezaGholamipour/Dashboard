@@ -27,20 +27,10 @@ const router = createRouter({
           component: accountSetting,
         },
         {
-          path: '/categories/:section(list|edit)/:id?',
+          path: '/categories/:section(list|edit)',
           name: 'categories',
           component: categories,
           /////////////////////////////////
-          beforeEnter: (to, from, next) => {
-            const section = to.params.section;
-            const id = to.params.id;
-            if (section === 'edit' && !id) {
-              next({ name: 'categories', params: { section: 'list' } });
-            } else {
-              next();
-            }
-          }
-          ////////////////////////////
         },
         {
           path: '/categories',

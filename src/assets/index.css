@@ -97,6 +97,59 @@
     min-width: 95px;
     color: black;
   }
+  /* switch toggle */
+  .switch {
+    display: inline-block;
+    position: relative;
+    font-size: 17px;
+    width: 3.5em;
+    height: 2em;
+  }
+  .switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    @apply shadow-md;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background: white;
+    border-radius: 50px;
+    position: absolute;
+    overflow: hidden;
+    cursor: pointer;
+    inset: 0;
+  }
+  .slider:before {
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background-color: #50cd89;
+    transform: translateX(150%);
+    border-radius: inherit;
+    position: absolute;
+    bottom: 0.3em;
+    height: 1.4em;
+    width: 1.4em;
+    right: 0.3em;
+    content: "";
+  }
+  .slider:after {
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background-color: #bb1f46;
+    border-radius: inherit;
+    position: absolute;
+    bottom: 0.3em;
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.3em;
+    content: "";
+  }
+  .switch-input:checked + .slider:before {
+    transform: translateY(0);
+  }
+  .switch-input:checked + .slider::after {
+    transform: translateX(-150%);
+  }
+  /* ////////////////// */
   .title {
     @apply text-xl text-[#636363] font-bold dark:text-white;
   }
@@ -148,10 +201,11 @@
   }
   .table-mobile-col {
     @apply py-3;
-    text-overflow: ellipsis !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     text-align: center;
-    max-width: 200px;
-    overflow: hidden !important;
+    max-width: 150px;
+    overflow: hidden;
   }
   .parent-table-filter {
     @apply w-full flex py-1 my-[10px] items-center justify-between gap-x-3;
@@ -424,7 +478,7 @@
   }
   /* competitions */
   .parent-competitions {
-    @apply flex flex-col h-full w-full justify-start gap-y-4 items-center;
+    @apply flex flex-col relative h-full w-full justify-start gap-y-4 items-center overflow-hidden rounded-lg;
   }
   .header-competitions {
     @apply w-full flex items-center justify-between;
