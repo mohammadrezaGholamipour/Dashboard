@@ -3,7 +3,7 @@ import axios from 'axios';
 ////////////////////////////////
 const HttClient = axios.create({
   baseURL: 'http://fadakmedia.hamrahefadak.ir/api/',
-  timeout: 30000,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     Accept: 'application/json',

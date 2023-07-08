@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, ErrorMessage, useField } from "vee-validate";
-import Loading from "@/components/loading.vue";
+import LoadingLogin from "@/components/loading-login.vue";
 import { useToast } from "vue-toastification";
 import AuthService from "@/utils/AuthService";
 import { useWindowSize } from '@vueuse/core';
@@ -76,7 +76,7 @@ const handleAcceptLogin = (values) => {
 <template>
   <div class="parent-login">
     <transition-slide>
-      <Loading v-if="state.loading" />
+      <LoadingLogin v-if="state.loading" />
     </transition-slide>
     <div v-if="width >= 1000" class="logo-login">
       <img src="@/assets/images/bg-login.png">

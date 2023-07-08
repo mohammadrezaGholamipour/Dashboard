@@ -19,16 +19,13 @@ onMounted(() => {
 })
 //////////////////////////////////////////////
 const state = reactive({
-  competitions: {
-    loading: false,
-    data: false,
-  }
+  competitions: false
 })
 //////////////////////////////////////////////
 const requestGetCompetitions = () => {
   competitionsApi.get()
     .then((response) => {
-      state.competitions.data = response.data
+      state.competitions = response.data
     }).catch(() => {
       toast.error('لیست مسابقات دریافت نشد')
       state.competitions = []
@@ -36,15 +33,12 @@ const requestGetCompetitions = () => {
 }
 //////////////////////////////////////
 const requestCompetitionsChangeStatus = (competitionsId) => {
-  state.competitions.loading = true
-  const competitions = state.competitions.data.find((item) => item.matchId === competitionsId)
+  const competitions = state.competitions.find((item) => item.matchId === competitionsId)
   competitionsApi.matchStatus(competitions.matchId, !competitions.isActive)
-    .then((response) => {
-      toast.success(response.message)
+    .then(() => {
+      requestGetCompetitions()
     }).catch((error) => {
       toast.error(error.message)
-    }).finally(() => {
-      state.competitions.loading = false
     })
 }
 </script>
@@ -52,9 +46,9 @@ const requestCompetitionsChangeStatus = (competitionsId) => {
   <div class="parent-competitions">
     <!-- ///////////////////////////// -->
     <transition-slide class="w-full">
-      <div v-if="state.competitions.data.length" class="header-competitions">
+      <div v-if="state.competitions.length" class="header-competitions">
         <p class="title">لیست مسابقات</p>
-        <button v-if="state.competitions.data.length" class="btn-green flex items-center gap-x-3 p-2 px-5 justify-center">
+        <button class="btn-green flex items-center gap-x-3 p-2 px-5 justify-center">
           <p>افزودن</p>
           <i class="fa-duotone fa-circle-plus text-xl"></i>
         </button>

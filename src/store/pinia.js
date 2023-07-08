@@ -31,8 +31,8 @@ export const useDashboardStore = defineStore('pinia', {
       accountApi.logOut()
         .then(() => {
           AuthService.removeTokenUser()
-          this.accountInfo = ''
           window.location.href = '/login'
+          this.accountInfo = ''
         }).catch((error) => {
           console.log(error);
         })

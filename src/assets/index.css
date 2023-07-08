@@ -111,7 +111,7 @@
     height: 0;
   }
   .slider {
-    @apply shadow-md;
+    @apply shadow-sm border-slate-200 border;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     background: white;
     border-radius: 50px;
@@ -126,7 +126,7 @@
     transform: translateX(150%);
     border-radius: inherit;
     position: absolute;
-    bottom: 0.3em;
+    bottom: 0.25em;
     height: 1.4em;
     width: 1.4em;
     right: 0.3em;
@@ -137,7 +137,7 @@
     background-color: #bb1f46;
     border-radius: inherit;
     position: absolute;
-    bottom: 0.3em;
+    bottom: 0.25em;
     height: 1.4em;
     width: 1.4em;
     left: 0.3em;
@@ -168,7 +168,6 @@
     @apply flex w-full flex-col justify-start items-start;
   }
   .table-system {
-    table-layout: fixed;
     text-align: center;
     height: 100%;
     width: 100%;
@@ -179,9 +178,9 @@
     border-top-style: dashed;
     border-top-width: 1px;
   }
-  .table-system tbody td {
-    padding: 13px 10px 13px 10px;
+  .table-system tbody td:not(:last-child) {
     text-overflow: ellipsis;
+    padding: 13px 10px;
     max-width: 100px;
     overflow: hidden;
   }
@@ -189,12 +188,11 @@
     padding: 13px;
   }
   .parent-table-mobile {
-    @apply flex w-full h-full flex-col justify-start gap-y-3 pb-3 items-center overflow-scroll;
+    @apply flex w-full h-full flex-col justify-start gap-y-3 pb-3 items-center;
+    min-width: 330px;
   }
   .table-mobile {
-    @apply flex justify-between items-center rounded-md shadow-md p-3 bg-white;
-    min-width: 280px;
-    width: 100%;
+    @apply flex w-full justify-between items-center rounded-md  shadow-md p-3 bg-white dark:bg-[#1e1e2d] text;
   }
   .table-mobile-row {
     @apply flex flex-col justify-start items-center;
