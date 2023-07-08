@@ -29,16 +29,24 @@ const requestGetCompetitions = () => {
     }).catch(() => {
       toast.error('لیست مسابقات دریافت نشد')
       state.competitions = []
+    }).finally(() => {
+      setTimeout(() => {
+        if (pinia.getrequestLoading) {
+          pinia.handleRequestLoading()
+        }
+      }, 1000);
     })
 }
 //////////////////////////////////////
 const requestCompetitionsChangeStatus = (competitionsId) => {
+  pinia.handleRequestLoading()
   const competitions = state.competitions.find((item) => item.matchId === competitionsId)
   competitionsApi.matchStatus(competitions.matchId, !competitions.isActive)
     .then(() => {
       requestGetCompetitions()
     }).catch((error) => {
       toast.error(error.message)
+      pinia.handleRequestLoading()
     })
 }
 </script>

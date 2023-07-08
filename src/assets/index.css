@@ -238,6 +238,11 @@
   .radio-active {
     @apply w-[22px] h-[22px] bg-[#F4F4F4] rounded-full shadow-sm border-blue-500 border-[6px];
   }
+  /* request-loading */
+  .parent-request-loading {
+    @apply absolute flex z-[999] justify-center items-center w-full h-[100vh] ;
+    backdrop-filter: blur(5px);
+  }
   /*///////////login///////////*/
   .parent-login {
     flex-wrap: wrap;

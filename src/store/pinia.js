@@ -6,6 +6,7 @@ export const useDashboardStore = defineStore('pinia', {
   state: () => ({
     sideBarStatus: false,
     accountInfo: '',
+    requestLoading: false,
     breadCrumb: [
       { name: 'صفحه اصلی', link: '/' }
     ]
@@ -17,6 +18,9 @@ export const useDashboardStore = defineStore('pinia', {
     },
     handleBreadCrumb(breadCrumb) {
       this.breadCrumb = breadCrumb
+    },
+    handleRequestLoading() {
+      this.requestLoading = !this.requestLoading
     },
     requestGetAccountInfo() {
       accountApi.info()
@@ -41,7 +45,9 @@ export const useDashboardStore = defineStore('pinia', {
   ///////////////////
   getters: {
     getSideBarStatus: (state) => state.sideBarStatus,
+    getrequestLoading: (state) => state.requestLoading,
     getAccountInfo: (state) => state.accountInfo,
     getbreadCrumb: (state) => state.breadCrumb,
+
   },
 })
