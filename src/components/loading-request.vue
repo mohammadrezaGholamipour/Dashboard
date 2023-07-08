@@ -65,9 +65,9 @@ ul {
 li {
   width: 40px;
   height: 40px;
-  background: #651fff;
+  background: #009ef7;
   border-radius: 4px;
-  box-shadow: 0 0 1px #fff, 0 0 5px #651fff, 0 0 10px #651fff, 0 0 15px #651fff, 0 0 25px #651fff, 0 0 55px #651fff;
+  box-shadow: 0 0 1px #fff, 0 0 5px #009ef7, 0 0 10px #009ef7, 0 0 15px #009ef7, 0 0 25px #009ef7, 0 0 55px #009ef7;
   -webkit-animation: scale 0.8s linear alternate infinite;
   animation: scale 0.8s linear alternate infinite;
 }
